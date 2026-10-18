@@ -1031,3 +1031,20 @@ a { color: inherit; text-decoration: none; }
 
 /* Mobile: 8px outer margin on every section (was 16px) */
 @media (max-width: 640px) { :root { --margin: 8px; } }
+
+/* Mobile: coloured sections (hero, Um mig, Námskeið, footer) run edge to edge with no outer margin;
+   text, buttons and content keep 16px from the screen edge */
+@media (max-width: 640px) {
+  :root { --margin: 0px; }
+  .intro, .sessions, .faq, .contact { padding-left: 16px; padding-right: 16px; }
+  .about { padding: 16px; }
+  .course__intro, .course-card { padding-left: 16px; padding-right: 16px; }
+  .fk__cell { padding-left: 16px; padding-right: 16px; }
+  .fk__card { padding-right: 16px; }
+  .fk__pager { padding-left: 16px; padding-right: 16px; }
+  .nav__logo { padding: 0 16px; }
+}
+@media (max-width: 640px) {
+  .fk__card { padding-left: 0; padding-right: 0; }
+  .fk__pager { padding-left: 0; padding-right: 0; }
+}
