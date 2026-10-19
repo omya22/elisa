@@ -1096,3 +1096,8 @@ a { color: inherit; text-decoration: none; }
 /* Desktop: logo lines up with the section text below (16px from the page edge).
    The cream logo tab blends into the cream page margin, so the logo can sit on the tab's left edge. */
 @media (min-width: 641px) { .nav__logo { padding-left: 0; } }
+
+/* Footer services: slash sits at the end of the line, and "Fyrirlestrar" always starts line two */
+.fk__services a + a::before { content: none; }
+.fk__services a:not(:last-of-type)::after { content: "/"; display: inline-block; margin: 0 .55em; font-weight: 400; color: rgb(255 250 245 / .2); pointer-events: none; }
+.fk__break { flex-basis: 100%; height: 0; }
