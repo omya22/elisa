@@ -406,6 +406,24 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
         `<span class="rv-line" style="--i:${i}" aria-hidden="true"><span class="rv-text">${l.join(' ')}</span></span>`).join('');
     };
     heads.forEach(h => { h.classList.add('rv'); split(h); });
+    // Line breaks are measured with whatever font is loaded at that moment. When Silka (or the
+    // fallback) finishes loading the words get wider, so measure again or a word ends up alone on a line.
+    const resplit = () => heads.forEach(split);
+    if (document.fonts) {
+      document.fonts.ready.then(resplit);
+      document.fonts.addEventListener('loadingdone', resplit);
+    }
+    addEventListener('load', resplit);
+    // Also re-measure if a heading's width changes for any other reason
+    if ('ResizeObserver' in window) {
+      const widths = new WeakMap();
+      const ro = new ResizeObserver(es => es.forEach(e => {
+        const w = Math.round(e.contentRect.width);
+        if (widths.has(e.target) && widths.get(e.target) !== w) split(e.target);
+        widths.set(e.target, w);
+      }));
+      heads.forEach(h => ro.observe(h));
+    }
     // Plays once, on its own timing, when the heading scrolls into view
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
