@@ -1084,3 +1084,11 @@ a { color: inherit; text-decoration: none; }
   .menu__links a { font-size: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .menu { animation: none; } }
+
+/* Menu button only on mobile; desktop keeps "Bóka tíma" */
+.nav__menu-btn, .menu { display: none; }
+@media (max-width: 640px) {
+  .nav__book { display: none; }
+  .nav__menu-btn { display: inline-flex; }
+  .menu:not([hidden]) { display: block; }
+}
