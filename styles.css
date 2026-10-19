@@ -1109,3 +1109,5 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) { .fk__services, .fk__card h3 { font-size: 20px; } }
 /* Each measured line stays on one line; if it ever overflows it does so visibly instead of breaking a word off */
 @media (min-width: 641px) { .rv .rv-line { white-space: nowrap; } }
+/* Um mig facts: rules in slate at 20% */
+.about__facts > div + div { border-top-color: rgb(84 112 126 / .2); }
