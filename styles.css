@@ -1209,3 +1209,6 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .menu__book { flex: 1; }
 }
+/* Menu: no dividers between links */
+.menu__links, .menu__links li { border: 0; }
+.menu__links a { padding: 6px 0; }
