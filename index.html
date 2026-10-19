@@ -231,6 +231,7 @@
             <label class="chip"><input type="radio" name="topic" value="Einkatímar"><span>Einkatímar</span></label>
             <label class="chip"><input type="radio" name="topic" value="Fyrirlestrar"><span>Fyrirlestrar</span></label>
             <label class="chip"><input type="radio" name="topic" value="Ráðgjöf"><span>Ráðgjöf</span></label>
+            <label class="chip"><input type="radio" name="topic" value="Annað"><span>Annað</span></label>
           </div>
         </fieldset>
         <div class="field">
@@ -473,6 +474,18 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       }
     });
     addEventListener('resize', () => { if (open && innerWidth > 1024) set(false); });
+  })();
+  </script>
+  <script>
+  // Topic chips: one at a time, and clicking the selected one again clears it
+  (() => {
+    document.querySelectorAll('.chip input[type=radio]').forEach(r => {
+      let was = false;
+      const remember = () => { was = r.checked; };
+      r.closest('.chip').addEventListener('pointerdown', remember);
+      r.addEventListener('keydown', e => { if (e.key === ' ' && r.checked) { e.preventDefault(); r.checked = false; was = false; } });
+      r.addEventListener('click', () => { if (was) { r.checked = false; was = false; } });
+    });
   })();
   </script>
 </body>
