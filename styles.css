@@ -1101,3 +1101,5 @@ a { color: inherit; text-decoration: none; }
 .fk__services a + a::before { content: none; }
 .fk__services a:not(:last-of-type)::after { content: "/"; display: inline-block; margin: 0 .55em; font-weight: 400; color: rgb(255 250 245 / .2); pointer-events: none; }
 .fk__break { flex-basis: 100%; height: 0; }
+/* Footer services: keep the original size, everything in Medium (including the slashes) */
+.fk__services a, .fk__services a:not(:last-of-type)::after { font-size: inherit; font-weight: 500; }
