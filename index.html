@@ -358,8 +358,9 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       nav.classList.toggle('is-scrolled', y > 0);
     };
     const fit = () => {
-      nav.classList.remove('is-compact');
-      if (logo.offsetWidth + right.scrollWidth + 16 > nav.clientWidth) nav.classList.add('is-compact');
+      nav.classList.remove('is-compact'); document.documentElement.classList.remove('nav-compact');
+      // When the links no longer fit next to the logo, switch to the menu button (same as phone/tablet)
+      if (logo.offsetWidth + right.scrollWidth + 16 > nav.clientWidth) { nav.classList.add('is-compact'); document.documentElement.classList.add('nav-compact'); }
       nav.style.setProperty('--logo-w', logo.offsetWidth + 'px');
     };
     fit(); update();
@@ -473,7 +474,7 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     });
-    addEventListener('resize', () => { if (open && innerWidth > 1024) set(false); });
+    addEventListener('resize', () => { if (open && innerWidth > 1024 && !document.documentElement.classList.contains('nav-compact')) set(false); });
   })();
   </script>
   <script>

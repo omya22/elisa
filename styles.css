@@ -1326,3 +1326,25 @@ a { color: inherit; text-decoration: none; }
 .nav__links a::before { will-change: transform; backface-visibility: hidden; background: var(--color-olive-300); }
 .nav.is-scrolled .nav__links a::before { background: var(--color-olive-300); }
 .nav__links a.nav__login { transition: background-color .2s; }
+
+/* Desktop widths where the links don't fit: same menu button + full-screen menu as phone/tablet */
+html.nav-compact .nav__links, html.nav-compact .nav__book { display: none !important; }
+html.nav-compact .nav__menu-btn { display: inline-flex; }
+html.nav-compact .menu:not([hidden]) {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; flex-direction: column; isolation: isolate;
+  width: auto; padding: 0; box-shadow: none; animation: none;
+  background: var(--color-olive-800); color: var(--color-neutral-050);
+  overflow-y: auto; overscroll-behavior: contain;
+  opacity: 0; transition: opacity .22s ease;
+}
+html.nav-compact .menu.is-open { opacity: 1; }
+html.nav-compact.menu-open, html.nav-compact.menu-open body { overflow: hidden; }
+html.nav-compact .menu:not([hidden])::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: url("assets/grain.webp"); background-size: 256px 256px;
+  mix-blend-mode: soft-light; opacity: .1;
+}
+html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justify-content: start; }
+/* Links stay visible on desktop until they actually stop fitting (JS sets .nav-compact) */
+@media (min-width: 1025px) { html:not(.nav-compact) .nav__links { display: flex; } }
