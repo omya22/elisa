@@ -26,7 +26,24 @@
         <li><a href="#hafa-samband">Hafa samband</a></li>
         <li><a href="#">Innskrá</a></li>
       </ul>
-      <a class="button nav__cta" href="#einkatimar">Bóka tíma</a>
+      <button class="button nav__cta nav__menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-label">Valmynd</span>
+        <span class="nav__burger" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="menu" id="site-menu" hidden>
+      <ul class="menu__links">
+        <li><a href="#thjonusta">Þjónusta</a></li>
+        <li><a href="#um-mig">Um mig</a></li>
+        <li><a href="#einkatimar">Einkatímar</a></li>
+        <li><a href="#namskeid">Netnámskeið</a></li>
+        <li><a href="#spurningar">Algengar spurningar</a></li>
+        <li><a href="#hafa-samband">Hafa samband</a></li>
+      </ul>
+      <div class="menu__foot">
+        <a class="menu__login" href="#">Innskrá</a>
+        <a class="button menu__book" href="#einkatimar">Bóka tíma</a>
+      </div>
     </div>
   </nav>
 
@@ -402,6 +419,25 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       if (innerWidth === w) return; w = innerWidth;
       clearTimeout(t); t = setTimeout(() => heads.forEach(split), 150);
     });
+  })();
+  </script>
+  <script>
+  // Nav menu – opens under the menu button; closes on link, Escape or a click outside
+  (() => {
+    const btn = document.querySelector('.nav__menu-btn'), menu = document.getElementById('site-menu');
+    if (!btn || !menu) return;
+    const label = btn.querySelector('.nav__menu-label');
+    const set = open => {
+      btn.setAttribute('aria-expanded', open);
+      label.textContent = open ? 'Loka' : 'Valmynd';
+      btn.closest('.nav').classList.toggle('is-open', open);
+      menu.hidden = !open;
+      if (open) menu.querySelector('a').focus({ preventScroll: true });
+    };
+    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { set(false); btn.focus(); } });
+    document.addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.nav')) set(false); });
   })();
   </script>
 </body>
