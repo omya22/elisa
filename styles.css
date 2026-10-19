@@ -1256,3 +1256,20 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) { .menu__book { flex: none; } }
 /* Tablet: keep the buttons at a sensible width instead of stretching across */
 @media (min-width: 641px) { .menu__actions { grid-template-columns: repeat(2, 220px); justify-content: start; } }
+
+/* Nav links: a cream highlighter bar sweeps in behind the lower half of the word on hover */
+.nav__links a { position: relative; isolation: isolate; }
+.nav__links a:hover { background: transparent; }
+.nav__links a::before {
+  content: "";
+  position: absolute; z-index: -1;
+  left: calc(clamp(10px, 1.6vw, 24px) - 6px);
+  right: calc(clamp(10px, 1.6vw, 24px) + 4px);
+  top: 52%; height: 0.8em;
+  background: var(--color-neutral-050);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .35s cubic-bezier(.65, 0, .35, 1);
+}
+.nav__links a:hover::before, .nav__links a:focus-visible::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .nav__links a::before { transition: none; } }
+.nav.is-scrolled .nav__links a::before { background: #eeebe2; }
