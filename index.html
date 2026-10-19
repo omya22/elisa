@@ -32,21 +32,34 @@
         <span class="nav__burger" aria-hidden="true"><span></span><span></span></span>
       </button>
     </div>
-    <div class="menu" id="site-menu" hidden>
+  </nav>
+
+  <!-- Mobile + tablet menu: green full screen -->
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Valmynd" hidden>
+    <div class="menu__bar">
+      <a class="menu__logo" href="#top" aria-label="Elísa Viðars – forsíða"><img src="assets/logo-cream.svg" alt="" width="138" height="24"></a>
+      <button class="menu__close" type="button">Loka<span class="menu__x" aria-hidden="true"></span></button>
+    </div>
+    <nav class="menu__body" aria-label="Valmynd">
       <ul class="menu__links">
         <li><a href="#thjonusta">Þjónusta</a></li>
         <li><a href="#um-mig">Um mig</a></li>
         <li><a href="#einkatimar">Einkatímar</a></li>
         <li><a href="#namskeid">Netnámskeið</a></li>
-        <li><a href="#spurningar">Algengar spurningar</a></li>
+        <li><a href="#spurningar">Spurningar</a></li>
         <li><a href="#hafa-samband">Hafa samband</a></li>
       </ul>
-      <div class="menu__foot">
+      <div class="menu__actions">
+        <a class="menu__book" href="#einkatimar">Bóka tíma</a>
         <a class="menu__login" href="#">Innskrá</a>
-        <a class="button menu__book" href="#einkatimar">Bóka tíma</a>
       </div>
-    </div>
-  </nav>
+      <div class="menu__info">
+        <div><span>Hafa samband</span><a href="mailto:elisa@elisavidars.is">elisa@elisavidars.is</a><a href="tel:+3540000000">+354 000 0000</a></div>
+        <div><span>Samfélagsmiðlar</span><a href="#">Instagram</a><a href="#">Facebook</a></div>
+      </div>
+    </nav>
+    <img class="menu__mark" src="assets/logo-green.svg" alt="" width="643" height="112">
+  </div>
 
   <header class="hero" id="top">
     <img class="hero__image" src="assets/hero.jpg" alt="Elísa brosandi í eldhúsinu að skola grænkál" width="2000" height="1334">
@@ -441,22 +454,32 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
   })();
   </script>
   <script>
-  // Nav menu – opens under the menu button; closes on link, Escape or a click outside
+  // Mobile + tablet menu – green full screen, fades in; closes on link, Loka, or Escape
   (() => {
     const btn = document.querySelector('.nav__menu-btn'), menu = document.getElementById('site-menu');
     if (!btn || !menu) return;
-    const label = btn.querySelector('.nav__menu-label');
-    const set = open => {
-      btn.setAttribute('aria-expanded', open);
-      label.textContent = open ? 'Loka' : 'Valmynd';
-      btn.closest('.nav').classList.toggle('is-open', open);
-      menu.hidden = !open;
-      if (open) menu.querySelector('a').focus({ preventScroll: true });
+    const close = menu.querySelector('.menu__close');
+    let open = false;
+    const set = v => {
+      open = v;
+      btn.setAttribute('aria-expanded', v);
+      document.documentElement.classList.toggle('menu-open', v);
+      if (v) { menu.hidden = false; requestAnimationFrame(() => menu.classList.add('is-open')); menu.querySelector('.menu__links a').focus({ preventScroll: true }); }
+      else { menu.classList.remove('is-open'); setTimeout(() => { if (!open) menu.hidden = true; }, 220); btn.focus({ preventScroll: true }); }
     };
-    btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
-    menu.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { set(false); btn.focus(); } });
-    document.addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.nav')) set(false); });
+    btn.addEventListener('click', () => set(true));
+    close.addEventListener('click', () => set(false));
+    menu.addEventListener('click', e => { const a = e.target.closest('a'); if (a) set(false); });
+    document.addEventListener('keydown', e => {
+      if (!open) return;
+      if (e.key === 'Escape') { set(false); return; }
+      if (e.key === 'Tab') { // keep focus inside the menu
+        const f = [...menu.querySelectorAll('a, button')]; const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+    addEventListener('resize', () => { if (open && innerWidth > 1024) set(false); });
   })();
   </script>
 </body>
