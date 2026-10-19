@@ -1106,3 +1106,4 @@ a { color: inherit; text-decoration: none; }
 .fk__services { font-size: 24px; }
 /* Footer course card title: 24px Medium */
 .fk__card h3 { font-size: 24px; font-weight: 500; line-height: 1.2; letter-spacing: -0.04em; }
+@media (max-width: 640px) { .fk__services, .fk__card h3 { font-size: 20px; } }
