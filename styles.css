@@ -1092,3 +1092,7 @@ a { color: inherit; text-decoration: none; }
   .nav__menu-btn { display: inline-flex; }
   .menu:not([hidden]) { display: block; }
 }
+
+/* Desktop: logo lines up with the section text below (16px from the page edge).
+   The cream logo tab blends into the cream page margin, so the logo can sit on the tab's left edge. */
+@media (min-width: 641px) { .nav__logo { padding-left: 0; } }
