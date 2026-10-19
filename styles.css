@@ -1111,3 +1111,13 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 641px) { .rv .rv-line { white-space: nowrap; } }
 /* Um mig facts: rules in slate at 20% */
 .about__facts > div + div { border-top-color: rgb(84 112 126 / .2); }
+
+/* Hero fills the first screen exactly (minus the outer margins) */
+.hero {
+  aspect-ratio: auto;
+  height: calc(100vh - 2 * var(--margin));
+  height: calc(100svh - 2 * var(--margin));
+  min-height: 520px;
+}
+@media (max-width: 860px) and (min-width: 641px) { .hero { height: calc(100svh - 2 * var(--margin)); } }
+@media (max-width: 640px) { .hero { height: 100svh; min-height: 560px; } }
