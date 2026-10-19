@@ -1302,3 +1302,14 @@ a { color: inherit; text-decoration: none; }
 .nav__links a.nav__login::before { content: none; }
 .nav__links a.nav__login:hover { background: var(--color-olive-800); color: var(--color-neutral-050); }
 .nav__links a.nav__login { border-radius: 0; }
+
+/* Nav: "Innskrá" as a light-olive block joined to "Bóka tíma" */
+.nav__right { gap: 0; }
+.nav__links { margin-right: 0; }
+.nav__links a.nav__login {
+  border: 0;
+  padding: 0 28px;
+  background: var(--color-olive-300);
+  color: var(--color-olive-800);
+}
+.nav__links a.nav__login:hover { background: #b3b26c; color: var(--color-olive-800); }
