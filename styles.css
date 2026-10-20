@@ -1437,3 +1437,34 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
   .sessions__list { gap: 0; }
   .price { padding-top: 26px; padding-bottom: 26px; }
 }
+
+/* Menu opens as a circle growing out of the burger button (JS sets --mx/--my to the button's centre),
+   then the links and buttons rise in one after another. Closing shrinks it back into the button. */
+.menu:not([hidden]), html.nav-compact .menu:not([hidden]) {
+  opacity: 1;
+  clip-path: circle(0px at var(--mx, calc(100% - 32px)) var(--my, 26px));
+  transition: clip-path .4s cubic-bezier(.65, 0, .35, 1);
+}
+.menu.is-open, html.nav-compact .menu.is-open {
+  clip-path: circle(150% at var(--mx, calc(100% - 32px)) var(--my, 26px));
+  transition-duration: .6s;
+}
+.menu__links li, .menu__actions > * {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.menu.is-open .menu__links li, .menu.is-open .menu__actions > * {
+  opacity: 1; transform: none;
+  transition: opacity .45s ease, transform .55s cubic-bezier(.2, .7, .2, 1);
+}
+.menu.is-open .menu__links li:nth-child(1) { transition-delay: .18s; }
+.menu.is-open .menu__links li:nth-child(2) { transition-delay: .23s; }
+.menu.is-open .menu__links li:nth-child(3) { transition-delay: .28s; }
+.menu.is-open .menu__links li:nth-child(4) { transition-delay: .33s; }
+.menu.is-open .menu__links li:nth-child(5) { transition-delay: .38s; }
+.menu.is-open .menu__actions > * { transition-delay: .44s; }
+@media (prefers-reduced-motion: reduce) {
+  .menu:not([hidden]), html.nav-compact .menu:not([hidden]) { clip-path: none; opacity: 0; transition: opacity .2s; }
+  .menu.is-open, html.nav-compact .menu.is-open { clip-path: none; opacity: 1; }
+  .menu__links li, .menu__actions > * { opacity: 1; transform: none; transition: none; }
+}

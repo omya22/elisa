@@ -449,7 +449,7 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
   })();
   </script>
   <script>
-  // Mobile + tablet menu – green full screen, fades in; closes on link, Loka, or Escape
+  // Mobile + tablet menu – green full screen, grows out of the burger button; closes on link, Loka, or Escape
   (() => {
     const btn = document.querySelector('.nav__menu-btn'), menu = document.getElementById('site-menu');
     if (!btn || !menu) return;
@@ -459,8 +459,8 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       open = v;
       btn.setAttribute('aria-expanded', v);
       document.documentElement.classList.toggle('menu-open', v);
-      if (v) { menu.hidden = false; requestAnimationFrame(() => menu.classList.add('is-open')); menu.querySelector('.menu__links a').focus({ preventScroll: true }); }
-      else { menu.classList.remove('is-open'); setTimeout(() => { if (!open) menu.hidden = true; }, 220); btn.focus({ preventScroll: true }); }
+      if (v) { const r = btn.getBoundingClientRect(); menu.style.setProperty('--mx', (r.left + r.width / 2) + 'px'); menu.style.setProperty('--my', (r.top + r.height / 2) + 'px'); menu.hidden = false; menu.getBoundingClientRect(); requestAnimationFrame(() => menu.classList.add('is-open')); menu.querySelector('.menu__links a').focus({ preventScroll: true }); }
+      else { menu.classList.remove('is-open'); setTimeout(() => { if (!open) menu.hidden = true; }, 420); btn.focus({ preventScroll: true }); }
     };
     btn.addEventListener('click', () => set(true));
     close.addEventListener('click', () => set(false));
