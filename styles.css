@@ -1402,6 +1402,3 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
   .service__desc { grid-area: desc; width: auto; max-width: 62ch; margin-top: 12px; }
 }
 @media (max-width: 1100px) { .service { row-gap: 10px; } .service__desc { margin-top: 0; } }
-
-/* Hafðu samband: form on the left, heading on the right (desktop) */
-@media (min-width: 1001px) { .contact { grid-template-areas: "form title"; } }
