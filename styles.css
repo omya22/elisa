@@ -1485,3 +1485,8 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .menu__logo { opacity: 0; transition: opacity .15s ease; }
 .menu.is-open .menu__logo { opacity: 1; transition: opacity .3s ease .15s; }
 @media (prefers-reduced-motion: reduce) { .menu__logo { opacity: 1; transition: none; } }
+
+/* Menu button: same green as the open menu (no darker hover/press state), so when the circle grows out of it
+   the square doesn't flicker or vanish — only the lines move, folding from burger to X */
+.nav__menu-btn, .nav__menu-btn:hover, .nav__menu-btn:active { background: var(--color-olive-800); transform: none; }
+.menu__close .burger span { transition-duration: .45s; }
