@@ -1479,3 +1479,9 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .menu { scrollbar-width: none; -ms-overflow-style: none; }
 .menu::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .menu__circle { width: calc(var(--r, 150vmax) * 2 + 4px); height: calc(var(--r, 150vmax) * 2 + 4px); margin: calc(var(--r, 150vmax) * -1 - 2px) 0 0 calc(var(--r, 150vmax) * -1 - 2px); }
+
+/* Menu button stays put while the circle opens: only the logo fades in, the two lines stay visible and fold into an X */
+.menu__bar, .menu.is-open .menu__bar { opacity: 1; transition: none; }
+.menu__logo { opacity: 0; transition: opacity .15s ease; }
+.menu.is-open .menu__logo { opacity: 1; transition: opacity .3s ease .15s; }
+@media (prefers-reduced-motion: reduce) { .menu__logo { opacity: 1; transition: none; } }
