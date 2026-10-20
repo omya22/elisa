@@ -1431,3 +1431,9 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .price__cta:focus-visible { outline: 2px solid var(--color-olive-800); outline-offset: 2px; }
 /* Desktop/tablet: give the hover tint a little room on each side while text stays aligned */
 @media (min-width: 641px) { .price { padding-left: 12px; padding-right: 12px; margin-left: -12px; margin-right: -12px; } }
+
+/* Einkatímar: no gap between rows, so the hover tint runs from divider to divider (spacing moved into the row's padding) */
+@media (min-width: 1001px) {
+  .sessions__list { gap: 0; }
+  .price { padding-top: 26px; padding-bottom: 26px; }
+}
