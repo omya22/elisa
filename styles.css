@@ -1485,9 +1485,3 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .menu__logo { opacity: 0; transition: opacity .15s ease; }
 .menu.is-open .menu__logo { opacity: 1; transition: opacity .3s ease .15s; }
 @media (prefers-reduced-motion: reduce) { .menu__logo { opacity: 1; transition: none; } }
-
-/* X button keeps its own square in the open menu (a shade darker than the menu green, so it reads as the same button) */
-.menu__close { background: #45512a; height: var(--nav-h, 51px); transition: background-color .2s; }
-.menu__close:hover { background: #3c4724; }
-/* On wide screens the nav sits 16px in from the edge; the menu's top bar follows so the X lands exactly on the button */
-.menu__bar { margin: var(--margin, 0px) var(--margin, 0px) 0; }
