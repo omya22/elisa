@@ -1357,3 +1357,30 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .burger span:last-child { top: 7px; }
 .menu.is-open .menu__close .burger span:first-child,
 .menu.is-open .menu__close .burger span:last-child { top: 3.5px; }
+
+/* ==========================================================================
+   One section rhythm: the same gap between every section
+   (120px on desktop, scaling down to 80px on tablet/phone)
+   ========================================================================== */
+:root { --section-space: clamp(80px, 8.33vw, 120px); }
+.intro    { padding-top: var(--section-space); padding-bottom: 0; }
+.about    { margin-top: var(--section-space); }
+.sessions { margin-top: var(--section-space); }
+.course   { margin-top: var(--section-space); margin-bottom: 0; }
+.faq      { margin-top: 0; padding-top: var(--section-space); padding-bottom: 0; }
+.contact  { margin-bottom: 0; padding-top: var(--section-space); padding-bottom: 0; }
+.fk       { margin-top: var(--section-space); }
+/* The hero's own outer margin already counts towards the first gap */
+.intro { padding-top: calc(var(--section-space) - var(--margin)); }
+
+/* Einkatímar on phone: "Bóka" as a clear light-olive button (same as Innskrá), so it doesn't blend into the text */
+@media (max-width: 640px) {
+  .price__cta {
+    justify-self: start; margin-top: 12px;
+    padding: 10px 16px;
+    background: var(--color-olive-300); color: var(--color-olive-800);
+    font-weight: 500;
+  }
+  .price__cta:hover { background: #b3b26c; }
+  .price { padding: 24px 0; }
+}
