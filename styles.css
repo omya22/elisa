@@ -1407,3 +1407,5 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .intro { gap: 48px; }
 .intro__image { width: 36%; }
 @media (max-width: 1100px) { .intro__image { width: 100%; max-width: 560px; } .intro { gap: 40px; } }
+.intro { gap: 72px; }
+@media (max-width: 1100px) { .intro { gap: 56px; } }
