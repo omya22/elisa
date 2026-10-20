@@ -35,6 +35,7 @@
 
   <!-- Mobile + tablet menu: green full screen -->
   <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Valmynd" hidden>
+    <span class="menu__circle" aria-hidden="true"></span>
     <div class="menu__bar">
       <a class="menu__logo" href="#top" aria-label="Elísa Viðars – forsíða"><img src="assets/logo-cream.svg" alt="" width="138" height="24"></a>
       <button class="menu__close" type="button" aria-label="Loka valmynd"><span class="burger" aria-hidden="true"><span></span><span></span></span></button>
@@ -459,7 +460,7 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       open = v;
       btn.setAttribute('aria-expanded', v);
       document.documentElement.classList.toggle('menu-open', v);
-      if (v) { const r = btn.getBoundingClientRect(); menu.style.setProperty('--mx', (r.left + r.width / 2) + 'px'); menu.style.setProperty('--my', (r.top + r.height / 2) + 'px'); menu.hidden = false; menu.getBoundingClientRect(); requestAnimationFrame(() => menu.classList.add('is-open')); menu.querySelector('.menu__links a').focus({ preventScroll: true }); }
+      if (v) { const r = btn.getBoundingClientRect(); menu.style.setProperty('--mx', (r.left + r.width / 2) + 'px'); menu.style.setProperty('--my', (r.top + r.height / 2) + 'px'); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; menu.style.setProperty('--r', Math.ceil(Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy))) + 'px'); menu.hidden = false; menu.getBoundingClientRect(); requestAnimationFrame(() => menu.classList.add('is-open')); menu.querySelector('.menu__links a').focus({ preventScroll: true }); }
       else { menu.classList.remove('is-open'); setTimeout(() => { if (!open) menu.hidden = true; }, 420); btn.focus({ preventScroll: true }); }
     };
     btn.addEventListener('click', () => set(true));

@@ -1438,17 +1438,23 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
   .price { padding-top: 26px; padding-bottom: 26px; }
 }
 
-/* Menu opens as a circle growing out of the burger button (JS sets --mx/--my to the button's centre),
-   then the links and buttons rise in one after another. Closing shrinks it back into the button. */
-.menu:not([hidden]), html.nav-compact .menu:not([hidden]) {
-  opacity: 1;
-  clip-path: circle(0px at var(--mx, calc(100% - 32px)) var(--my, 26px));
-  transition: clip-path .4s cubic-bezier(.65, 0, .35, 1);
+/* Menu opens as a green circle growing out of the burger button (JS puts it on the button's centre and sizes it
+   to reach the farthest corner), then the links and buttons rise in one after another. Closing shrinks it back.
+   The circle is its own element scaled with transform, which every browser (Safari included) animates smoothly. */
+.menu:not([hidden]), html.nav-compact .menu:not([hidden]) { opacity: 1; background: transparent; transition: none; }
+.menu__circle {
+  position: fixed; z-index: -2; pointer-events: none;
+  left: var(--mx, calc(100% - 32px)); top: var(--my, 26px);
+  width: calc(var(--r, 150vmax) * 2); height: calc(var(--r, 150vmax) * 2);
+  margin: calc(var(--r, 150vmax) * -1) 0 0 calc(var(--r, 150vmax) * -1);
+  border-radius: 50%; background: var(--color-olive-800);
+  transform: scale(0); transition: transform .4s cubic-bezier(.65, 0, .35, 1);
 }
-.menu.is-open, html.nav-compact .menu.is-open {
-  clip-path: circle(150% at var(--mx, calc(100% - 32px)) var(--my, 26px));
-  transition-duration: .6s;
-}
+.menu.is-open .menu__circle { transform: scale(1); transition-duration: .6s; }
+.menu:not([hidden])::before { transition: opacity .3s ease; }
+.menu:not(.is-open)::before { opacity: 0 !important; }
+.menu__bar, .menu__mark { opacity: 0; transition: opacity .15s ease; }
+.menu.is-open .menu__bar, .menu.is-open .menu__mark { opacity: 1; transition: opacity .3s ease .15s; }
 .menu__links li, .menu__actions > * {
   opacity: 0; transform: translateY(16px);
   transition: opacity .15s ease, transform .15s ease;
@@ -1464,7 +1470,6 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 .menu.is-open .menu__links li:nth-child(5) { transition-delay: .38s; }
 .menu.is-open .menu__actions > * { transition-delay: .44s; }
 @media (prefers-reduced-motion: reduce) {
-  .menu:not([hidden]), html.nav-compact .menu:not([hidden]) { clip-path: none; opacity: 0; transition: opacity .2s; }
-  .menu.is-open, html.nav-compact .menu.is-open { clip-path: none; opacity: 1; }
-  .menu__links li, .menu__actions > * { opacity: 1; transform: none; transition: none; }
+  .menu__circle { transition: none; }
+  .menu__links li, .menu__actions > *, .menu__bar, .menu__mark { opacity: 1; transform: none; transition: none; }
 }
