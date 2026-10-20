@@ -1384,3 +1384,6 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
   .price__cta:hover { background: #b3b26c; }
   .price { padding: 24px 0; }
 }
+/* Section rhythm: 100px desktop, 64px tablet + phone */
+:root { --section-space: 100px; }
+@media (max-width: 1024px) { :root { --section-space: 64px; } }
