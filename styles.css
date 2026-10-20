@@ -1473,3 +1473,9 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
   .menu__circle { transition: none; }
   .menu__links li, .menu__actions > *, .menu__bar, .menu__mark { opacity: 1; transform: none; transition: none; }
 }
+
+/* Menu: no visible scrollbar (on Macs set to "always show scrollbars" it drew a light strip down the right edge
+   and pushed the buttons off-centre). The menu still scrolls on short screens. */
+.menu { scrollbar-width: none; -ms-overflow-style: none; }
+.menu::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.menu__circle { width: calc(var(--r, 150vmax) * 2 + 4px); height: calc(var(--r, 150vmax) * 2 + 4px); margin: calc(var(--r, 150vmax) * -1 - 2px) 0 0 calc(var(--r, 150vmax) * -1 - 2px); }
