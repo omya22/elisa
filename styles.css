@@ -1387,3 +1387,18 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 /* Section rhythm: 100px desktop, 64px tablet + phone */
 :root { --section-space: 100px; }
 @media (max-width: 1024px) { :root { --section-space: 64px; } }
+
+/* Þjónusta, stacked rows (≤1100px): arrow sits on the same line as the heading */
+@media (max-width: 1100px) {
+  .service {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name arrow" "desc desc";
+    align-items: center;
+    column-gap: 16px;
+  }
+  .service__name { grid-area: name; width: auto; }
+  .service__arrow { grid-area: arrow; }
+  .service__desc { grid-area: desc; width: auto; max-width: 62ch; margin-top: 12px; }
+}
+@media (max-width: 1100px) { .service { row-gap: 10px; } .service__desc { margin-top: 0; } }
