@@ -1499,3 +1499,8 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
    the square doesn't flicker or vanish — only the lines move, folding from burger to X */
 .nav__menu-btn, .nav__menu-btn:hover, .nav__menu-btn:active { background: var(--color-olive-800); transform: none; }
 .menu__close .burger span { transition-duration: .45s; }
+
+/* All headings in Silka Medium (500) */
+h1, h2, h3, h4,
+.hero__title, .intro__quote, .about__quote, .sessions__title, .course__heading,
+.course-card__title, .course .course-card__title, .faq__title, .contact__title, .fk__title { font-weight: 500; }
