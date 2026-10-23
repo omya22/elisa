@@ -355,7 +355,7 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
     const update = () => {
       ticking = false;
       const g = gap(), y = scrollY;
-      nav.classList.add('is-scrolled'); // same bar look at the top and when scrolled
+      nav.classList.toggle('is-scrolled', y > 0);
     };
     const fit = () => {
       nav.classList.remove('is-compact'); document.documentElement.classList.remove('nav-compact');

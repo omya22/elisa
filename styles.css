@@ -1544,9 +1544,3 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 .nav::before { transition: clip-path .7s cubic-bezier(.65, 0, .35, 1), top .3s ease, bottom .3s ease; }
 .nav.is-scrolled::before { top: -8px; bottom: -8px; border-bottom: 1px solid #e5e1dc; }
 @media (max-width: 1024px) { .nav__sprout { left: 16px; } }
-
-/* Nav bar look is permanent now: the bar sits above the hero instead of over it */
-.nav { margin: 8px var(--margin) 8px; top: 8px; }
-.hero { margin-top: var(--margin); height: calc(100svh - 67px - 2 * var(--margin)); }
-@media (max-width: 640px) { .hero { margin-top: 0; height: calc(100svh - 67px); } }
-@media (min-width: 641px) { .hero { height: calc(100svh - 75px - var(--margin)); } }
