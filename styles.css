@@ -1563,3 +1563,9 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 .nav__book { margin-left: 0; }
 .nav__links li:last-child { margin-left: 24px; }
 @media (max-width: 1360px) { .nav__right { gap: 8px; } .nav__links li:last-child { margin-left: 20px; } }
+/* Nav sits inside the hero frame (16px in), so the buttons stay 8px inside the photo's edge */
+.nav { margin: var(--margin) var(--margin) calc(-1 * (var(--nav-h) + var(--margin))); }
+.nav::before { left: calc(-1 * var(--margin)); right: calc(-1 * var(--margin)); clip-path: inset(0 calc(100% - var(--margin) - 290px) 0 var(--margin)); }
+.nav.is-scrolled::before { clip-path: inset(0 0 0 0); }
+.nav__logo { margin-left: -8px; }
+@media (max-width: 1024px) { .nav::before { clip-path: inset(0 calc(100% - var(--margin) - var(--logo-w, 190px)) 0 var(--margin)); } }
