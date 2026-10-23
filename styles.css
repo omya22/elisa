@@ -1510,7 +1510,7 @@ h1, h2, h3, h4,
    size hugs the label (no fixed widths or heights). Icon buttons (menu, arrows, play) excluded.
    ========================================================================== */
 .button:not(.nav__menu-btn), .nav__links a.nav__login, .nav__book, .price__cta, .fk__cta, .menu__book, .menu__login {
-  border-radius: 999px !important;
+  border-radius: 20px !important;
   padding: 16px 24px !important;
   width: auto !important; min-width: 0 !important;
   height: auto !important; min-height: 0 !important;
@@ -1532,15 +1532,34 @@ h1, h2, h3, h4,
 html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !important; }
 
 /* ==========================================================================
-   Scrolled nav (Ómar's reference): full-width cream bar with a thin line below,
-   the sprout mark instead of the wordmark, pills sitting inside the bar with 8px around them
+   20px corner radius: buttons, tags/toggle chips, arrow buttons, nav link hover,
+   menu button
    ========================================================================== */
-.nav__logo { position: relative; }
-.nav__sprout { position: absolute; left: 33px; top: 50%; width: 40px !important; height: auto; transform: translateY(-50%) scale(.8); opacity: 0; transition: opacity .3s ease, transform .3s ease; }
-.nav__wordmark { transition: opacity .3s ease; }
-.nav.is-scrolled .nav__wordmark { opacity: 0; }
-.nav.is-scrolled .nav__sprout { opacity: 1; transform: translateY(-50%) scale(1); }
-.nav.is-scrolled { top: 8px; }
-.nav::before { transition: clip-path .7s cubic-bezier(.65, 0, .35, 1), top .3s ease, bottom .3s ease; }
-.nav.is-scrolled::before { top: -8px; bottom: -8px; border-bottom: 1px solid #e5e1dc; }
-@media (max-width: 1024px) { .nav__sprout { left: 16px; } }
+.chip, .chip span, .fk__arrows button, .nav__links a, .nav__links a::before, .nav__menu-btn, .menu__close { border-radius: 20px !important; }
+
+/* ==========================================================================
+   Nav per Figma 910:2870: 67px bar with 8px padding, 290px cream logo tab
+   (158px wordmark, 16px in), links 40px tall with 24px sides and 16px gaps,
+   40px before the two 20px-radius buttons (8px apart)
+   ========================================================================== */
+.nav { --nav-h: 67px; margin: 0 0 calc(-1 * var(--nav-h)); padding: 8px; box-sizing: border-box; }
+.nav::before { left: 0; right: 0; clip-path: inset(0 calc(100% - 290px) 0 0); }
+.nav.is-scrolled::before { clip-path: inset(0 0 0 0); }
+.nav__logo { position: relative; width: 290px; margin: -8px 0 -8px -8px; padding-left: 16px; }
+.nav__logo img { width: 158px; }
+.nav__right { gap: 40px; }
+.nav__links { gap: 16px; }
+.nav__links a { height: 40px; padding: 0 24px; }
+.nav__links a.nav__login, .nav__book { height: 51px !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+.nav__book { margin-left: 8px; }
+.nav__menu-btn { height: 51px !important; align-self: center; }
+@media (max-width: 1360px) { .nav__right { gap: 24px; } .nav__links { gap: 4px; } .nav__links a { padding: 0 16px; } }
+@media (max-width: 1024px) { .nav__logo { width: auto; padding-right: 16px; } .nav::before { clip-path: inset(0 calc(100% - var(--logo-w, 190px)) 0 0); } .nav__logo img { width: 138px; } }
+/* Open menu: top bar matches the 67px nav so the X lands on the menu button */
+.menu__bar { height: 51px; padding: calc(8px + env(safe-area-inset-top, 0px)) 8px 8px 16px; box-sizing: content-box; }
+.menu__close { height: 51px !important; }
+/* Innskrá lives in the links list: 40px before it, 8px between it and Bóka tíma */
+.nav__right { gap: 8px; }
+.nav__book { margin-left: 0; }
+.nav__links li:last-child { margin-left: 24px; }
+@media (max-width: 1360px) { .nav__right { gap: 8px; } .nav__links li:last-child { margin-left: 20px; } }

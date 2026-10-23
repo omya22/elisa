@@ -502,3 +502,8 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 .hero__resume .resume { width: auto !important; }
 .band__act { align-items: flex-start; }
 @media (max-width: 1024px) { .hero__resume, .hero__resume .resume { width: auto !important; } }
+
+/* 20px corner radius on buttons and tags */
+.btn, .top__out, .resume, .side__next, .mark { border-radius: 20px !important; }
+.tag, .player__demo { border-radius: 20px; }
+.tag { padding: 2px 10px; }
