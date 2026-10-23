@@ -1573,3 +1573,7 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 /* Buttons, tabs (topic chips) and next/previous arrows: fully rounded */
 .button:not(.nav__menu-btn), .nav__links a.nav__login, .nav__book, .price__cta, .fk__cta, .menu__book, .menu__login,
 .chip, .chip span, .fk__arrows button { border-radius: 999px !important; }
+
+/* Smaller menu button (48×40); the X in the open menu matches it */
+.nav__menu-btn, .menu__close { width: 48px !important; height: 40px !important; align-self: center; }
+.menu__bar { align-items: center; }
