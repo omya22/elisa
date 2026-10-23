@@ -1504,3 +1504,29 @@ html.nav-compact .menu__actions { grid-template-columns: repeat(2, 220px); justi
 h1, h2, h3, h4,
 .hero__title, .intro__quote, .about__quote, .sessions__title, .course__heading,
 .course-card__title, .course .course-card__title, .faq__title, .contact__title, .fk__title { font-weight: 500; }
+
+/* ==========================================================================
+   Buttons everywhere: fully rounded pills, 16px top/bottom, 24px left/right,
+   size hugs the label (no fixed widths or heights). Icon buttons (menu, arrows, play) excluded.
+   ========================================================================== */
+.button:not(.nav__menu-btn), .nav__links a.nav__login, .nav__book, .price__cta, .fk__cta, .menu__book, .menu__login {
+  border-radius: 999px !important;
+  padding: 16px 24px !important;
+  width: auto !important; min-width: 0 !important;
+  height: auto !important; min-height: 0 !important;
+  flex: none !important;
+  display: inline-flex !important; align-items: center; justify-content: center; gap: 8px;
+  line-height: 19px;
+  white-space: nowrap;
+}
+.hero__button, .course-card__button, .contact__submit .button, .fk__cta { align-self: flex-start; }
+/* Nav: the two pills sit side by side with a small gap, centred in the bar */
+.nav__links a.nav__login, .nav__book { align-self: center; }
+.nav__book { margin-left: 8px; }
+/* Mobile menu: pills side by side instead of a full-width joined block */
+.menu__actions { display: flex !important; flex-wrap: wrap; gap: 8px !important; }
+/* Price rows: pill hugs its label */
+.price__cta { justify-self: start; }
+/* keep "Bóka tíma" hidden whenever the menu button takes over */
+@media (max-width: 1024px) { .nav a.nav__book, .nav .nav__book { display: none !important; } }
+html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !important; }

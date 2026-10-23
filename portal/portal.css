@@ -486,3 +486,19 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
   .band { padding-left: 24px; padding-right: 24px; }
 }
 @media (max-width: 1024px) { .hero--photo .hero__inner { padding: 24px var(--gutter); } }
+
+/* ==========================================================================
+   Buttons: fully rounded pills, 16px / 24px padding, hug their content
+   ========================================================================== */
+.btn, .top__out, .resume, .side__next, .mark {
+  border-radius: 999px !important; padding: 16px 24px !important;
+  width: auto !important; min-height: 0 !important; height: auto !important;
+  flex: none !important; align-self: flex-start;
+}
+.top__out { align-self: center; }
+.card .btn { align-self: flex-start; }
+.box .btn, .band .btn, .box--sand .btn { align-self: flex-start; }
+.sheet__btns { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+.hero__resume .resume { width: auto !important; }
+.band__act { align-items: flex-start; }
+@media (max-width: 1024px) { .hero__resume, .hero__resume .resume { width: auto !important; } }
