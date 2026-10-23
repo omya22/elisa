@@ -282,26 +282,32 @@
     const cover = c.image ? `<img class="hero__img" src="${c.image}" alt="">` : `<div class="hero__img hero__img--none"><img src="${LOGO_CREAM}" alt=""></div>`;
     const segs = c.lectures.filter(l => !l.optional).map(l => `<i${p.done.includes(l.id) ? ' class="on"' : ''}></i>`).join('');
     const resumeHtml = st.started && !st.completed ? `${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span></a>` : ''}` : '';
+    const heroProgress = st.started && !st.completed && c.lectures.length ? `<div class="hero__progress" aria-label="Framvinda">
+          <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b></span><span class="band__pct">${st.pct}%</span></div>
+          <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></div>` : '';
     let band;
     if (!c.lectures.length) band = `<section class="band band--sand wrap-edge"><p class="lead">Efnið kemur bráðum.</p></section>`;
     else if (st.completed) band = `<section class="band band--light wrap-edge" aria-label="Framvinda">
         <div class="band__info"><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
         <div class="band__act"><button class="btn btn--dark" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
-    else if (st.started) band = `<section class="band band--progress wrap-edge" aria-label="Framvinda">
-        <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b></span><span class="band__pct">${st.pct}%</span></div>
-        <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></section>`;
+    else if (st.started) band = '';
     else band = `<section class="band band--dark wrap-edge">
         <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">Byrjaðu þegar þér hentar. Aðgangurinn rennur aldrei út.</p></div>
         <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
     return `${header({ href: '#/', label: 'Námskeiðin mín' })}
     <section class="hero hero--photo${c.image ? '' : ' hero--none'} wrap-edge">
       ${cover}
-      <div class="hero__text">
-        ${c.archived ? '<div class="row-wrap"><span class="tag">Ekki lengur til sölu</span></div>' : ''}
-        <h1 tabindex="-1">${esc(c.name)}</h1>
-        <p class="hero__desc">${esc(c.description)}</p>
+      <div class="hero__inner">
+        <div class="hero__row">
+          <div class="hero__text">
+            ${c.archived ? '<div class="row-wrap"><span class="tag">Ekki lengur til sölu</span></div>' : ''}
+            <h1 tabindex="-1">${esc(c.name)}</h1>
+            <p class="hero__desc">${esc(c.description)}</p>
+          </div>
+          ${resumeHtml ? `<div class="hero__resume">${resumeHtml}</div>` : ''}
+        </div>
+        ${heroProgress}
       </div>
-      ${resumeHtml ? `<div class="hero__resume">${resumeHtml}</div>` : ''}
     </section>
     ${band}
     <div class="course wrap-edge">
