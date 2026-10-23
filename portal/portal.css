@@ -400,3 +400,18 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 .hero--none::after { display: none; }
 .hero--none .hero__text, .hero--none .hero__desc { color: var(--cream); }
 .hero--none .tag { color: var(--cream); border-color: rgb(255 250 245 / .5); }
+
+/* ---------- v7: Halda áfram in the hero corner ---------- */
+.hero__resume { position: absolute; right: 48px; bottom: 48px; z-index: 2; }
+.hero__resume .resume { margin: 0; min-height: 64px; padding: 12px 20px; background: var(--olive); color: var(--cream); }
+.hero__resume .resume:hover { background: var(--olive-dark); color: var(--cream); }
+.hero__resume .resume__sub { color: rgb(255 250 245 / .8); }
+.hero__resume .resume > svg { display: none; }
+.hero--photo .hero__text { padding-right: 420px; }
+.band--progress { padding-bottom: 32px; }
+@media (max-width: 1024px) {
+  .hero__resume { position: relative; right: auto; bottom: auto; padding: 0 var(--gutter) 24px; margin-top: -8px; }
+  .hero__resume .resume { width: 100%; }
+  .hero--photo .hero__text { padding-right: var(--gutter); min-height: 360px; }
+  .hero--photo { min-height: 0; }
+}
