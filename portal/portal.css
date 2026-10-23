@@ -370,3 +370,14 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 .slec.is-cur .ic path { fill: var(--olive); stroke: none; }
 .side__next { margin-top: 20px; width: 100%; }
 @media (max-width: 1024px) { .band--progress { padding: 24px var(--gutter) 0; margin: 0; } .lecture__side { margin: 0 var(--gutter); } .mark, .lecture__head .auto { flex-basis: 100%; } }
+
+/* ---------- v5 from comments ---------- */
+.band--progress { background: var(--light); padding: 32px 48px; }
+.band--progress .segs i { background: rgb(84 98 52 / .18); }
+.band--progress .segs i.on { background: var(--olive); }
+.band--progress .band__under { justify-content: flex-end; }
+.band--progress .resume { flex: 0 0 auto; padding: 12px 20px; gap: 12px; }
+.band--progress .resume__sub { color: rgb(255 250 245 / .8); }
+.restart-under { margin-top: 20px; }
+.course__side .h2 { margin-bottom: 20px; }
+@media (max-width: 1024px) { .band--progress { margin: 16px var(--gutter) 0; padding: 24px 16px; } .band--progress .resume { flex: 1 1 auto; } }

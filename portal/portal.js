@@ -289,8 +289,7 @@
     else if (st.started) band = `<section class="band band--progress wrap-edge" aria-label="Framvinda">
         <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
         <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div>
-        <div class="band__under">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><img class="resume__img" src="${st.next.poster}" alt=""><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span></a>` : ''}
-          <button class="linkbtn band__restart" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
+        <div class="band__under">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span></a>` : ''}</div></section>`;
     else band = `<section class="band band--dark wrap-edge">
         <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">Byrjaðu þegar þér hentar. Aðgangurinn rennur aldrei út.</p></div>
         <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
@@ -308,8 +307,9 @@
       <main class="course__main">
         <h2 class="h2">Efni námskeiðsins</h2>
         <div class="lecs">${c.lectures.length ? curriculum(c, st) : '<p class="muted">Efnið kemur bráðum.</p>'}</div>
+        ${st.started && !st.completed ? '<button class="linkbtn restart-under" type="button" data-restart>Byrja upp á nýtt</button>' : ''}
       </main>
-      ${c.attachments.length ? `<aside class="course__side"><section><h2 class="h3">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section></aside>` : ''}
+      ${c.attachments.length ? `<aside class="course__side"><section><h2 class="h2">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section></aside>` : ''}
     </div>
     <dialog class="sheet" id="restart-dlg" aria-labelledby="restart-t">
       <h2 id="restart-t">Byrja upp á nýtt?</h2>
