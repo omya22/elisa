@@ -1530,3 +1530,17 @@ h1, h2, h3, h4,
 /* keep "Bóka tíma" hidden whenever the menu button takes over */
 @media (max-width: 1024px) { .nav a.nav__book, .nav .nav__book { display: none !important; } }
 html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !important; }
+
+/* ==========================================================================
+   Scrolled nav (Ómar's reference): full-width cream bar with a thin line below,
+   the sprout mark instead of the wordmark, pills sitting inside the bar with 8px around them
+   ========================================================================== */
+.nav__logo { position: relative; }
+.nav__sprout { position: absolute; left: 33px; top: 50%; width: 40px !important; height: auto; transform: translateY(-50%) scale(.8); opacity: 0; transition: opacity .3s ease, transform .3s ease; }
+.nav__wordmark { transition: opacity .3s ease; }
+.nav.is-scrolled .nav__wordmark { opacity: 0; }
+.nav.is-scrolled .nav__sprout { opacity: 1; transform: translateY(-50%) scale(1); }
+.nav.is-scrolled { top: 8px; }
+.nav::before { transition: clip-path .7s cubic-bezier(.65, 0, .35, 1), top .3s ease, bottom .3s ease; }
+.nav.is-scrolled::before { top: -8px; bottom: -8px; border-bottom: 1px solid #e5e1dc; }
+@media (max-width: 1024px) { .nav__sprout { left: 16px; } }
