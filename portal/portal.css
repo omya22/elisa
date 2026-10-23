@@ -306,3 +306,16 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
   .course__side .about { display: flex; }
   .lecs { margin: 0 calc(var(--gutter) * -1); }
 }
+
+/* Inner pages: back link left, logo centred, Útskrá right */
+.top--center { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+.top--center .top__back { justify-self: start; max-width: 100%; }
+.top--center .top__nav { justify-self: end; }
+@media (max-width: 1024px) {
+  .top--center .top__logo { padding: 0 8px; }
+  .top--center .top__logo img { width: 96px; }
+  .top--center .top__back { padding-left: var(--gutter); font-size: 14px; }
+}
+.top__short { display: none; }
+@media (max-width: 480px) { .top--center .top__full { display: none; } .top--center .top__short { display: inline; } }
+.top__full, .top__short { margin-left: 6px; }

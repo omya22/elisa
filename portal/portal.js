@@ -77,11 +77,16 @@
   };
 
   /* ---------- shared chrome ---------- */
-  const header = (back) => `
+  const header = (back) => back ? `
+    <header class="top top--center">
+      <a class="top__back" href="${back.href}" aria-label="Til baka: ${esc(back.label)}">← <span class="top__full">${esc(back.label)}</span><span class="top__short">Til baka</span></a>
+      <a class="top__logo" href="#/"><img src="${LOGO}" alt="Elísa Viðars – námskeiðin mín" width="138" height="24"></a>
+      <nav class="top__nav" aria-label="Aðgangur"><button class="top__out" type="button" data-logout>Útskrá</button></nav>
+    </header>` : `
     <header class="top">
-      ${back ? `<a class="top__back" href="${back.href}">← ${esc(back.label)}</a>` : `<a class="top__logo" href="#/"><img src="${LOGO}" alt="Elísa Viðars – námskeiðin mín" width="138" height="24"></a>`}
+      <a class="top__logo" href="#/"><img src="${LOGO}" alt="Elísa Viðars – námskeiðin mín" width="138" height="24"></a>
       <nav class="top__nav" aria-label="Aðgangur">
-        ${back ? `<a class="top__logo top__logo--right" href="#/"><img src="${LOGO}" alt="Elísa Viðars – námskeiðin mín" width="138" height="24"></a>` : `<a class="top__link" href="#/" aria-current="page">Námskeiðin mín</a>`}
+        <a class="top__link" href="#/" aria-current="page">Námskeiðin mín</a>
         <button class="top__out" type="button" data-logout>Útskrá</button>
       </nav>
     </header>`;
