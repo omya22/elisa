@@ -293,7 +293,7 @@
         <div class="band__act">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span><img class="resume__img" src="${st.next.poster}" alt=""></a>` : ''}
           <button class="linkbtn linkbtn--light band__restart" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
     else band = `<section class="band band--dark wrap-edge">
-        <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">${esc(c.description)}</p></div>
+        <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">Byrjaðu þegar þér hentar. Aðgangurinn rennur aldrei út.</p></div>
         <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
     return `${header({ href: '#/', label: 'Námskeiðin mín' })}
     <section class="hero wrap-edge">
