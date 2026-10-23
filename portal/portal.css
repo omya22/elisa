@@ -322,3 +322,7 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
 
 /* 16px space under the header */
 .top { margin-bottom: 16px; }
+
+/* Course hero: short description instead of the lecture count */
+.hero__desc { max-width: 520px; font-size: 18px; line-height: 1.5; letter-spacing: -0.02em; }
+@media (max-width: 1024px) { .hero__desc { font-size: 16px; } }
