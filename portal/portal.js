@@ -284,10 +284,10 @@
     let band;
     if (!c.lectures.length) band = `<section class="band band--sand wrap-edge"><p class="lead">Efnið kemur bráðum.</p></section>`;
     else if (st.completed) band = `<section class="band band--light wrap-edge" aria-label="Framvinda">
-        <div class="band__info"><span class="band__eyebrow">Framvinda</span><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
+        <div class="band__info"><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
         <div class="band__act"><button class="btn btn--dark" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
     else if (st.started) band = `<section class="band band--dark wrap-edge" aria-label="Framvinda">
-        <div class="band__info"><span class="band__eyebrow">Framvinda</span>
+        <div class="band__info">
           <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
           <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></div>
         <div class="band__act">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span><img class="resume__img" src="${st.next.poster}" alt=""></a>` : ''}
