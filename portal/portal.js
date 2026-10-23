@@ -294,13 +294,13 @@
         <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">Byrjaðu þegar þér hentar. Aðgangurinn rennur aldrei út.</p></div>
         <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
     return `${header({ href: '#/', label: 'Námskeiðin mín' })}
-    <section class="hero wrap-edge">
+    <section class="hero hero--photo${c.image ? '' : ' hero--none'} wrap-edge">
+      ${cover}
       <div class="hero__text">
         ${c.archived ? '<div class="row-wrap"><span class="tag">Ekki lengur til sölu</span></div>' : ''}
         <h1 tabindex="-1">${esc(c.name)}</h1>
         <p class="hero__desc">${esc(c.description)}</p>
       </div>
-      ${cover}
     </section>
     ${band}
     <div class="course wrap-edge">

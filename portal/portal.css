@@ -381,3 +381,22 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 .restart-under { margin-top: 20px; }
 .course__side .h2 { margin-bottom: 20px; }
 @media (max-width: 1024px) { .band--progress { margin: 16px var(--gutter) 0; padding: 24px 16px; } .band--progress .resume { flex: 1 1 auto; } }
+
+/* ---------- v6: full-width hero photo, light gradient at the bottom, text on top ---------- */
+.hero--photo { position: relative; display: block; min-height: 480px; overflow: hidden; background: var(--sand); }
+.hero--photo .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 35%; }
+.hero--photo .hero__img--none { display: flex; align-items: flex-start; justify-content: center; padding-top: 64px; }
+.hero--photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgb(255 250 245 / 0) 30%, rgb(255 250 245 / .55) 58%, rgb(255 250 245 / .94) 100%); }
+.hero--photo .hero__text { position: relative; z-index: 1; min-height: 480px; padding: 48px; justify-content: flex-end; }
+.hero--photo .hero__desc { color: var(--olive); }
+@media (max-width: 1024px) {
+  .hero--photo { min-height: 420px; }
+  .hero--photo .hero__img { height: 100%; }
+  .hero--photo .hero__text { min-height: 420px; padding: 24px var(--gutter); }
+}
+
+.hero--photo::after { background: linear-gradient(to bottom, rgb(255 250 245 / 0) 40%, rgb(255 250 245 / .6) 70%, rgb(255 250 245 / .93) 100%); }
+.hero--none::after { display: none; }
+.hero--none .hero__text, .hero--none .hero__desc { color: var(--cream); }
+.hero--none .tag { color: var(--cream); border-color: rgb(255 250 245 / .5); }
