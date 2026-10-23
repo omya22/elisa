@@ -460,3 +460,12 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 
 /* ---------- v11: whole portal capped at 1440px, centred ---------- */
 #app { max-width: 1440px; margin: 0 auto; }
+
+/* ---------- v12: list lines start at the content edge; hover fills the row between its lines ---------- */
+.course__main .lecs { margin-left: 0 !important; margin-right: 0 !important; }
+.course__main .lec, .course__main .sec, .course__main .lec.is-next { padding-left: 16px !important; padding-right: 16px !important; margin: 0; width: 100%; box-sizing: border-box; }
+.course__main .lec + .sec, .course__main .sec { margin-top: 0; }
+.course__main .sec { border-top: 1px solid var(--olive); }
+.course__main .lec { min-height: 64px; }
+.course__main .h2 { padding-left: 0; }
+@media (max-width: 1024px) { .course__main .lecs { margin: 0 !important; } }
