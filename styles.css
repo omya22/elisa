@@ -1577,3 +1577,14 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 /* Smaller menu button (48×40); the X in the open menu matches it */
 .nav__menu-btn, .menu__close { width: 48px !important; height: 40px !important; align-self: center; }
 .menu__bar { align-items: center; }
+
+/* Phone/tablet hero: light cream fade from the bottom with olive text (instead of the dark fade) */
+@media (max-width: 860px) {
+  .hero__content { color: var(--color-olive-800); bottom: 40px; }
+  .hero__content::before {
+    inset: -280px -16px -40px;
+    background: linear-gradient(to top, rgb(255 250 245 / .96) 0%, rgb(255 250 245 / .88) 45%, rgb(255 250 245 / .55) 75%, rgb(255 250 245 / 0) 100%);
+  }
+  .hero__title { font-size: 34px; line-height: 1.12; }
+  .hero__lead { margin-top: 12px; font-size: 16px; line-height: 1.35; }
+}
