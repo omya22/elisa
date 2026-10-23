@@ -319,3 +319,6 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
 .top__short { display: none; }
 @media (max-width: 480px) { .top--center .top__full { display: none; } .top--center .top__short { display: inline; } }
 .top__full, .top__short { margin-left: 6px; }
+
+/* 16px space under the header */
+.top { margin-bottom: 16px; }
