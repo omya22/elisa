@@ -326,3 +326,14 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
 /* Course hero: short description instead of the lecture count */
 .hero__desc { max-width: 520px; font-size: 18px; line-height: 1.5; letter-spacing: -0.02em; }
 @media (max-width: 1024px) { .hero__desc { font-size: 16px; } }
+
+/* Progress band v3: separate from the hero, outlined cream panel with olive accents */
+.band { margin-top: 16px; }
+.band--progress { background: var(--cream); color: var(--olive); border: 1px solid var(--olive); }
+.band--progress .segs i { background: var(--sand-line); }
+.band--progress .segs i.on { background: var(--olive); }
+.band--progress .resume { background: var(--olive); color: var(--cream); }
+.band--progress .resume:hover { background: var(--olive-dark); color: var(--cream); }
+.band--progress .resume__sub { color: rgb(255 250 245 / .75); }
+.band--progress .band__restart { color: var(--olive); }
+@media (max-width: 1024px) { .band { margin: 16px var(--gutter) 0; } .band--progress { border-width: 1px; } }

@@ -286,7 +286,7 @@
     else if (st.completed) band = `<section class="band band--light wrap-edge" aria-label="Framvinda">
         <div class="band__info"><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
         <div class="band__act"><button class="btn btn--dark" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
-    else if (st.started) band = `<section class="band band--dark wrap-edge" aria-label="Framvinda">
+    else if (st.started) band = `<section class="band band--progress wrap-edge" aria-label="Framvinda">
         <div class="band__info">
           <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
           <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></div>
@@ -310,10 +310,7 @@
         <h2 class="h2">Efni námskeiðsins</h2>
         <div class="lecs">${c.lectures.length ? curriculum(c, st) : '<p class="muted">Efnið kemur bráðum.</p>'}</div>
       </main>
-      <aside class="course__side">
-        ${c.attachments.length ? `<section><h2 class="h3">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section>` : ''}
-        <section class="about"><h2 class="h3">Um námskeiðið</h2><p class="about__text" id="about">${esc(c.longDescription)}</p>${c.longDescription.length > 140 ? '<button class="linkbtn" type="button" data-more aria-controls="about" aria-expanded="false">Lesa meira</button>' : ''}</section>
-      </aside>
+      ${c.attachments.length ? `<aside class="course__side"><section><h2 class="h3">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section></aside>` : ''}
     </div>
     <dialog class="sheet" id="restart-dlg" aria-labelledby="restart-t">
       <h2 id="restart-t">Byrja upp á nýtt?</h2>
