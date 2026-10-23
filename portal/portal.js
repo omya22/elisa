@@ -300,7 +300,7 @@
       <div class="hero__text">
         ${c.archived ? '<div class="row-wrap"><span class="tag">Ekki lengur til sölu</span></div>' : ''}
         <h1 tabindex="-1">${esc(c.name)}</h1>
-        <div class="meta"><span>${c.lectures.length} fyrirlestrar</span><span>${total(st.duration)}</span></div>
+        <div class="meta"><span>${c.lectures.length} fyrirlestrar</span></div>
       </div>
       ${cover}
     </section>
