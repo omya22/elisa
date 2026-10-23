@@ -287,11 +287,10 @@
         <div class="band__info"><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
         <div class="band__act"><button class="btn btn--dark" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
     else if (st.started) band = `<section class="band band--progress wrap-edge" aria-label="Framvinda">
-        <div class="band__info">
-          <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
-          <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></div>
-        <div class="band__act">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span><img class="resume__img" src="${st.next.poster}" alt=""></a>` : ''}
-          <button class="linkbtn linkbtn--light band__restart" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
+        <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
+        <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div>
+        <div class="band__under">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><img class="resume__img" src="${st.next.poster}" alt=""><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span></a>` : ''}
+          <button class="linkbtn band__restart" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
     else band = `<section class="band band--dark wrap-edge">
         <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">Byrjaðu þegar þér hentar. Aðgangurinn rennur aldrei út.</p></div>
         <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
@@ -346,16 +345,23 @@
     const sec = l.section ? c.sections.findIndex(s => s.id === l.section) : -1;
     const pos = p.pos[l.id] || 0, rule = c.completion_rule;
     const watched = Math.min(100, Math.round(((p.watched || {})[l.id] || 0) / l.duration * 100));
-    const markBtn = rule === 'video_watched' ? '' : `<button class="btn ${done ? 'btn--light is-on' : 'btn--light'}" type="button" data-mark aria-pressed="${done}">${done ? I.done.replace('width="24" height="24"', 'width="18" height="18"') + ' Lokið' : '<span class="ring"></span> Merkja sem lokið'}</button>`;
-    const nextBtn = !next ? `<a class="btn btn--dark" href="#/n/${c.id}">Aftur á námskeiðið</a>`
-      : nextLock ? `<button class="btn btn--off" type="button" disabled><span>${I.lock.replace('width="24" height="24"', 'width="14" height="14"')} Næsti fyrirlestur</span><small>${l.optional ? esc(lockText(nextLock)) : 'Kláraðu þennan fyrirlestur fyrst'}</small></button>`
-      : `<a class="btn btn--dark" href="#/f/${c.id}/${next.id}">Næsti fyrirlestur ${I.arrow}</a>`;
-    const side = c.lectures.map(x => {
+    const markBtn = rule === 'video_watched'
+      ? `<div class="auto"><div class="auto__row"><span>Lýkur sjálfkrafa þegar þú hefur horft á myndbandið</span><strong data-wp>${done ? 100 : watched}%</strong></div><div class="bar"><i data-wbar style="width:${done ? 100 : watched}%"></i></div></div>`
+      : `<button class="btn btn--light mark${done ? ' is-on' : ''}" type="button" data-mark aria-pressed="${done}">${done ? I.done.replace('width="24" height="24"', 'width="18" height="18"') + ' Lokið' : '<span class="ring"></span> Merkja sem lokið'}</button>`;
+    const nextBtn = !next ? `<a class="btn btn--dark side__next" href="#/n/${c.id}">Aftur á námskeiðið</a>`
+      : nextLock ? `<button class="btn btn--off side__next" type="button" disabled><span>${I.lock.replace('width="24" height="24"', 'width="14" height="14"')} Næsti fyrirlestur</span><small>${l.optional ? esc(lockText(nextLock)) : 'Kláraðu þennan fyrirlestur fyrst'}</small></button>`
+      : `<a class="btn btn--dark side__next" href="#/f/${c.id}/${next.id}">Næsti fyrirlestur ${I.arrow}</a>`;
+    const srow = x => {
       const xk = locked(c, x), xd = p.done.includes(x.id), cur = x.id === l.id;
-      const ic = xk ? I.lock : xd ? I.done : I.play;
+      const ic = xk ? I.lock : cur ? I.current : xd ? I.done : I.play;
       return xk ? `<span class="slec is-locked">${ic}<span>${esc(x.title)}</span><small>${mins(x.duration)}</small></span>`
         : `<a class="slec${cur ? ' is-cur' : ''}${xd ? ' is-done' : ''}" href="#/f/${c.id}/${x.id}"${cur ? ' aria-current="page"' : ''}>${ic}<span>${esc(x.title)}</span><small>${mins(x.duration)}</small></a>`;
-    }).join('');
+    };
+    let side = c.lectures.filter(x => !x.section).map(srow).join('');
+    c.sections.forEach((s2, n) => {
+      const ls = c.lectures.filter(x => x.section === s2.id), req = ls.filter(x => !x.optional);
+      side += `<div class="ssec"><h3>Kafli ${n + 1} · ${esc(s2.title)}</h3><span>${req.filter(x => p.done.includes(x.id)).length}/${req.length}</span></div>` + ls.map(srow).join('');
+    });
     return `${header({ href: `#/n/${c.id}`, label: c.name })}
     <div class="wrap lecture">
       <main class="lecture__main">
@@ -373,26 +379,23 @@
         </div>
         <div class="lecture__head">
           <div class="stack-8">
-            <span class="muted small">Fyrirlestur ${i + 1} af ${c.lectures.length}${sec >= 0 ? ` · Kafli ${sec + 1}` : ''}${l.optional ? ' · Aukaefni' : ''}</span>
+            <span class="muted small">${sec >= 0 ? `Kafli ${sec + 1}: ` : ''}Fyrirlestur ${i + 1} af ${c.lectures.length}${l.optional ? ' · Aukaefni' : ''}</span>
             <h1 tabindex="-1">${esc(l.title)}</h1>
           </div>
+          ${markBtn}
         </div>
         <div class="prose">
           <p>Í þessum fyrirlestri förum við yfir ${esc(l.title.toLowerCase())}. Horfðu á myndbandið og notaðu svo gögnin hér fyrir neðan til að prófa þig áfram heima.</p>
           <p class="muted">Þetta er prufutexti. Í alvöru útgáfunni kemur texti fyrirlestursins frá Upp.</p>
         </div>
         ${l.attachments ? `<section><h2 class="h3">Gögn með fyrirlestrinum</h2><div class="files">${l.attachments.map(fileRow).join('')}</div></section>` : ''}
-        ${prev ? `<a class="small strong prev" href="#/f/${c.id}/${prev.id}">← Fyrri: ${esc(prev.title)}</a>` : ''}
       </main>
       <aside class="lecture__side" aria-label="Efni námskeiðsins">
-        <div class="side__head"><span>${stats(c).done} af ${stats(c).required} lokið</span><div class="bar"><i style="width:${stats(c).pct}%"></i></div></div>
+        <div class="side__head"><h2 class="h3">Efni námskeiðsins</h2><span class="small muted">${stats(c).done} af ${stats(c).required} lokið</span></div>
         <div class="side__list">${side}</div>
+        ${nextBtn}
       </aside>
-    </div>
-    <footer class="actions">
-      ${rule === 'video_watched' ? `<div class="auto"><div class="auto__row"><span>Lýkur sjálfkrafa þegar þú hefur horft á myndbandið</span><strong data-wp>${done ? 100 : watched}%</strong></div><div class="bar"><i data-wbar style="width:${done ? 100 : watched}%"></i></div></div>` : ''}
-      <div class="actions__btns${rule === 'video_watched' ? ' actions__btns--one' : ''}">${markBtn}${nextBtn}</div>
-    </footer>`;
+    </div>`;
   }
   function bLecture(c, l) {
     if (!c || !l || !document.getElementById('player')) return;

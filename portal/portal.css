@@ -337,3 +337,36 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
 .band--progress .resume__sub { color: rgb(255 250 245 / .75); }
 .band--progress .band__restart { color: var(--olive); }
 @media (max-width: 1024px) { .band { margin: 16px var(--gutter) 0; } .band--progress { border-width: 1px; } }
+
+/* ---------- v4 from comments ---------- */
+/* Course progress: no border, one column; full-width bar, Halda áfram underneath */
+.band--progress { border: 0; padding: 32px 0 8px; flex-direction: column; align-items: stretch; gap: 16px; }
+.band--progress .band__row { align-items: baseline; }
+.band__under { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.band--progress .resume { flex: 0 1 480px; min-width: 0; padding: 12px 20px 12px 12px; }
+.band--progress .resume__img { order: -1; }
+.band--progress .band__restart { align-self: center; color: var(--olive); }
+/* Lecture page: no bottom bar; Merkja sem lokið next to the title; Næsti under the list */
+.lecture { padding-bottom: 96px; }
+.lecture__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; }
+.lecture__head .stack-8 { flex: 1 1 320px; min-width: 0; }
+.mark { flex-shrink: 0; }
+.mark.is-on { background: var(--light); }
+.lecture__head .auto { flex: 0 1 360px; max-width: none; font-size: 13px; }
+.lecture__side { background: none; position: static; display: flex; flex-direction: column; }
+.side__head { padding: 0 0 14px; border: 0; flex-direction: row; justify-content: space-between; align-items: baseline; font-weight: 400; }
+.side__head .h3 { margin: 0; }
+.side__list { padding: 0; max-height: none; overflow: visible; border-bottom: 1px solid var(--line); }
+.ssec { margin-top: 20px; padding: 14px 16px 10px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--olive); }
+.ssec:first-child { margin-top: 0; }
+.ssec h3 { font-size: 15px; letter-spacing: -0.02em; }
+.ssec span { font-size: 13px; color: var(--muted); }
+.slec { min-height: 52px; padding: 8px 16px; border-top: 1px solid var(--line); transition: background-color .2s; }
+.slec .ic { width: 22px; height: 22px; }
+a.slec:not(.is-cur):hover { background: var(--sand); }
+.slec.is-cur { background: var(--sand); color: var(--olive); }
+.slec.is-cur small { color: var(--muted); }
+.slec.is-cur .ic circle { fill: var(--light); }
+.slec.is-cur .ic path { fill: var(--olive); stroke: none; }
+.side__next { margin-top: 20px; width: 100%; }
+@media (max-width: 1024px) { .band--progress { padding: 24px var(--gutter) 0; margin: 0; } .lecture__side { margin: 0 var(--gutter); } .mark, .lecture__head .auto { flex-basis: 100%; } }
