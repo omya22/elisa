@@ -415,3 +415,10 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
   .hero--photo .hero__text { padding-right: var(--gutter); min-height: 360px; }
   .hero--photo { min-height: 0; }
 }
+
+/* ---------- v8 ---------- */
+.band--progress { background: #e4e3c3; }
+.band--progress .segs i { background: rgb(84 98 52 / .15); }
+.hero--photo .hero__img { object-position: 50% 15%; }
+.course__side .h3 { margin-bottom: 14px; }
+.course__side { padding-top: 10px; }

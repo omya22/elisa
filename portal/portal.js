@@ -249,7 +249,7 @@
     return `${header()}
     <main class="wrap page">
       <div class="page__head">
-        <div class="stack-8"><span class="hello">Hæ ${esc(name)}</span><h1 tabindex="-1">Námskeiðin mín</h1></div>
+        <h1 tabindex="-1">Námskeiðin mín</h1>
         <span class="muted">${list.length} námskeið</span>
       </div>
       ${list.length ? `<div class="cards">${list.map(card).join('')}</div>` : `
@@ -310,7 +310,7 @@
         <div class="lecs">${c.lectures.length ? curriculum(c, st) : '<p class="muted">Efnið kemur bráðum.</p>'}</div>
         ${st.started && !st.completed ? '<button class="linkbtn restart-under" type="button" data-restart>Byrja upp á nýtt</button>' : ''}
       </main>
-      ${c.attachments.length ? `<aside class="course__side"><section><h2 class="h2">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section></aside>` : ''}
+      ${c.attachments.length ? `<aside class="course__side"><section><h2 class="h3">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section></aside>` : ''}
     </div>
     <dialog class="sheet" id="restart-dlg" aria-labelledby="restart-t">
       <h2 id="restart-t">Byrja upp á nýtt?</h2>
