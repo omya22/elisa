@@ -422,3 +422,20 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 .hero--photo .hero__img { object-position: 50% 15%; }
 .course__side .h3 { margin-bottom: 14px; }
 .course__side { padding-top: 10px; }
+
+/* ---------- v9: one content edge after login ----------
+   Desktop: 16px frame + 48px inset = text starts 64px from the screen edge.
+   Row lines / hover tints still run edge to edge of the 16px frame. Phones stay at 16px. */
+@media (min-width: 1025px) {
+  :root { --inset: 48px; }
+  .page.wrap, .lecture.wrap { max-width: none; padding-left: 64px; padding-right: 64px; }
+  .course.wrap-edge { padding: 56px var(--inset) 96px; }
+  .course__main .lecs { margin-left: calc(var(--inset) * -1); }
+  .course__main .lec, .course__main .sec { padding-left: var(--inset); }
+  .course__main .lec.is-next { padding-left: var(--inset); }
+  .hero--photo .hero__text { padding-left: var(--inset); padding-bottom: var(--inset); }
+  .hero__resume { right: var(--inset); bottom: var(--inset); }
+  .band--progress { padding-left: var(--inset); padding-right: var(--inset); }
+}
+
+@media (max-width: 1024px) { .band--progress { margin: 16px 0 0; padding: 24px var(--gutter); } }
