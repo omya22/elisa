@@ -476,3 +476,13 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 
 /* v14: 24px left padding inside lecture rows (desktop) */
 @media (min-width: 1025px) { .course__main .lec, .course__main .sec, .course__main .lec.is-next { padding-left: 24px !important; } }
+
+/* ---------- v15: content runs the full width, in line with the hero image (16px from the frame);
+   hero text has 24px padding ---------- */
+@media (min-width: 1025px) {
+  .page.wrap, .lecture.wrap { padding-left: 16px; padding-right: 16px; }
+  .course.wrap-edge { padding: 56px 0 96px; }
+  .hero--photo .hero__inner { padding: 24px; }
+  .band { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 1024px) { .hero--photo .hero__inner { padding: 24px var(--gutter); } }
