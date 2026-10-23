@@ -263,3 +263,46 @@ a.slec:not(.is-cur):hover { background: var(--sand-line); color: var(--olive); }
 /* fixes after first test */
 @media (max-width: 1024px) { .hero__text, .hero__img { flex: none; } .hero__img { height: clamp(200px, 50vw, 360px); width: 100%; } }
 .slec small, .lec__d { white-space: nowrap; }
+
+/* ---------- Design v2 (from the Claude Design canvas, 5f) ---------- */
+/* Content spans the same width as the header and hero (16px in from each edge) */
+.course.wrap-edge { margin: 0 16px; max-width: none; padding: 56px 0 96px; }
+/* Progress band: full width right under the hero */
+.band { margin-top: 0; padding: 36px 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px 80px; }
+.band--dark { background: var(--olive); color: var(--cream); }
+.band--light { background: var(--light); color: var(--olive); }
+.band--sand { background: var(--sand); }
+.band__info { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.band__act { flex: 0 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.band__eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--light); }
+.band--light .band__eyebrow { color: var(--olive); }
+.band__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.band__big { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; font-size: 17px; }
+.band__big b { font-size: 44px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+.band--light .band__big { align-items: center; font-size: 28px; font-weight: 500; letter-spacing: -0.04em; }
+.band__pct { font-size: 17px; font-weight: 500; }
+.band__lead { font-size: 20px; line-height: 1.45; max-width: 560px; }
+.band__restart { align-self: flex-end; }
+.band .btn--cream, .btn--cream { background: var(--cream); color: var(--olive); }
+.btn--cream:hover { background: #fff; color: var(--olive); }
+.segs { display: grid; gap: 4px; }
+.segs i { height: 6px; background: rgb(255 250 245 / .22); }
+.segs i.on { background: var(--light); }
+.band .resume { margin: 0; min-height: 76px; padding: 12px 12px 12px 20px; gap: 16px; }
+.resume__h { display: inline-flex; align-items: center; gap: 8px; font-size: 17px; }
+.resume__img { width: 88px; height: 52px; object-fit: cover; flex-shrink: 0; }
+.resume > svg { display: none; }
+/* Lecture list: 16px inner padding, hover fills the whole row */
+.sec { padding: 16px 16px 12px; }
+.lec { padding: 10px 16px; }
+.lec.is-next { margin: 0; padding: 10px 16px; width: 100%; }
+.lec:hover { background: var(--sand); color: inherit; }
+.lec.is-next:hover { background: #e3dfd2; }
+@media (max-width: 1024px) {
+  .band { padding: 28px var(--gutter); gap: 20px; }
+  .band__info, .band__act { flex-basis: 100%; }
+  .band__big b { font-size: 36px; }
+  .course.wrap-edge { margin: 0; padding: 32px var(--gutter) 96px; flex-direction: column; }
+  .course__side .about { display: flex; }
+  .lecs { margin: 0 calc(var(--gutter) * -1); }
+}

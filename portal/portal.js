@@ -275,11 +275,21 @@
     if (!c) return vNotFound();
     const st = stats(c), p = prog(c.id);
     const cover = c.image ? `<img class="hero__img" src="${c.image}" alt="">` : `<div class="hero__img hero__img--none"><img src="${LOGO_CREAM}" alt=""></div>`;
-    let box;
-    if (!c.lectures.length) box = `<section class="box box--sand"><p class="lead">Efnið kemur bráðum.</p></section>`;
-    else if (st.completed) box = `<section class="box box--light">${I.done.replace('width="24" height="24"', 'width="36" height="36"')}<h2>Þú hefur lokið námskeiðinu</h2><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span><button class="btn btn--dark btn--auto" type="button" data-restart>Byrja upp á nýtt</button></section>`;
-    else if (st.started) box = `<section class="box box--dark"><div class="box__row"><h2>${st.done} af ${st.required} lokið</h2><span class="small">${st.pct}%</span></div><div class="bar bar--dark"><i style="width:${st.pct}%"></i></div>${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span>Halda áfram</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ' · frá ' + clock(p.pos[st.next.id]) : ''}</span></span>${I.arrow}</a>` : ''}<button class="linkbtn linkbtn--light" type="button" data-restart>Byrja upp á nýtt</button></section>`;
-    else box = `<section class="box box--sand"><p class="lead">${esc(c.description)}</p><button class="btn btn--dark" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></section>`;
+    const segs = c.lectures.filter(l => !l.optional).map(l => `<i${p.done.includes(l.id) ? ' class="on"' : ''}></i>`).join('');
+    let band;
+    if (!c.lectures.length) band = `<section class="band band--sand wrap-edge"><p class="lead">Efnið kemur bráðum.</p></section>`;
+    else if (st.completed) band = `<section class="band band--light wrap-edge" aria-label="Framvinda">
+        <div class="band__info"><span class="band__eyebrow">Framvinda</span><div class="band__row"><span class="band__big">${I.done.replace('width="24" height="24"', 'width="40" height="40"')}Þú hefur lokið námskeiðinu</span></div><span class="small">${st.done} af ${st.required} lokið${p.completed ? ' · ' + date(p.completed) : ''}</span></div>
+        <div class="band__act"><button class="btn btn--dark" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
+    else if (st.started) band = `<section class="band band--dark wrap-edge" aria-label="Framvinda">
+        <div class="band__info"><span class="band__eyebrow">Framvinda</span>
+          <div class="band__row"><span class="band__big"><b>${st.done} af ${st.required}</b><span>fyrirlestrum lokið</span></span><span class="band__pct">${st.pct}%</span></div>
+          <div class="segs" style="grid-template-columns:repeat(${st.required},minmax(0,1fr))">${segs}</div></div>
+        <div class="band__act">${st.next ? `<a class="resume" href="#/f/${c.id}/${st.next.id}"><span class="resume__t"><span class="resume__h">Halda áfram ${I.arrow}</span><span class="resume__sub">${esc(st.next.title)}${p.pos[st.next.id] ? ` · frá ${clock(p.pos[st.next.id])} af ${clock(st.next.duration)}` : ''}</span></span><img class="resume__img" src="${st.next.poster}" alt=""></a>` : ''}
+          <button class="linkbtn linkbtn--light band__restart" type="button" data-restart>Byrja upp á nýtt</button></div></section>`;
+    else band = `<section class="band band--dark wrap-edge">
+        <div class="band__info"><span class="band__eyebrow">Byrjaðu hér</span><p class="band__lead">${esc(c.description)}</p></div>
+        <div class="band__act"><button class="btn btn--cream" type="button" data-start>Byrja námskeiðið ${I.arrow}</button></div></section>`;
     return `${header({ href: '#/', label: 'Námskeiðin mín' })}
     <section class="hero wrap-edge">
       <div class="hero__text">
@@ -289,13 +299,13 @@
       </div>
       ${cover}
     </section>
-    <div class="wrap course">
+    ${band}
+    <div class="course wrap-edge">
       <main class="course__main">
         <h2 class="h2">Efni námskeiðsins</h2>
         <div class="lecs">${c.lectures.length ? curriculum(c, st) : '<p class="muted">Efnið kemur bráðum.</p>'}</div>
       </main>
       <aside class="course__side">
-        ${box}
         ${c.attachments.length ? `<section><h2 class="h3">Gögn</h2><div class="files">${c.attachments.map(fileRow).join('')}</div></section>` : ''}
         <section class="about"><h2 class="h3">Um námskeiðið</h2><p class="about__text" id="about">${esc(c.longDescription)}</p>${c.longDescription.length > 140 ? '<button class="linkbtn" type="button" data-more aria-controls="about" aria-expanded="false">Lesa meira</button>' : ''}</section>
       </aside>
