@@ -473,3 +473,6 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
 /* ---------- v13: list rows 32px inner padding on the left ---------- */
 .course__main .lec, .course__main .sec, .course__main .lec.is-next { padding-left: 32px !important; }
 @media (max-width: 1024px) { .course__main .lec, .course__main .sec, .course__main .lec.is-next { padding-left: 16px !important; } }
+
+/* v14: 24px left padding inside lecture rows (desktop) */
+@media (min-width: 1025px) { .course__main .lec, .course__main .sec, .course__main .lec.is-next { padding-left: 24px !important; } }
