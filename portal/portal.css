@@ -457,3 +457,6 @@ a.slec:not(.is-cur):hover { background: var(--sand); }
   .hero__resume, .hero__resume .resume { width: 100%; }
   .hero__progress .band__big b { font-size: 34px; }
 }
+
+/* ---------- v11: whole portal capped at 1440px, centred ---------- */
+#app { max-width: 1440px; margin: 0 auto; }
