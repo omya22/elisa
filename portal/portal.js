@@ -103,7 +103,6 @@
         <a class="auth__top" href="../">Til baka á vefinn ${I.out}</a>
         <form class="auth__form" id="f-email" novalidate>
           <div class="stack-12">
-            <span class="eyebrow">Námskeiðin mín</span>
             <h1 tabindex="-1">Velkomin aftur</h1>
             <p class="lead">Sláðu inn netfangið sem þú keyptir námskeiðið með. Við sendum þér 6 stafa kóða.</p>
           </div>
@@ -113,9 +112,7 @@
             <p class="field__err" id="email-err" hidden></p>
           </div>
           <button class="btn btn--dark" type="submit">Senda kóða ${I.arrow}</button>
-          <p class="muted small">Ekkert lykilorð. Fyrsta innskráning býr til aðganginn þinn.</p>
         </form>
-        <a class="auth__store" href="${D.storeUrl}">Ekki komin(n) með námskeið?<span>Skoða námskeiðin ${I.arrow}</span></a>
       </main>
     </div>`;
   }
