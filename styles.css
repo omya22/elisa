@@ -1596,3 +1596,9 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 .burger span:last-child { top: 5.25px; }
 .menu.is-open .menu__close .burger span:first-child,
 .menu.is-open .menu__close .burger span:last-child { top: 2.625px; }
+/* Whole-pixel line positions so both burger lines render at the same thickness */
+.burger { height: 8px; }
+.burger span { height: 2px; }
+.burger span:last-child { top: 6px; }
+.menu.is-open .menu__close .burger span:first-child,
+.menu.is-open .menu__close .burger span:last-child { top: 3px; }
