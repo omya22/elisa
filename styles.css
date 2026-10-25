@@ -1602,3 +1602,22 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
 .burger span:last-child { top: 6px; }
 .menu.is-open .menu__close .burger span:first-child,
 .menu.is-open .menu__close .burger span:last-child { top: 3px; }
+
+/* ==========================================================================
+   Trial: Hedvig Letters Serif for headings only (SIL OFL, fonts/Hedvig-OFL.txt).
+   One weight (Regular) with an optical-size axis 12–24.
+   ========================================================================== */
+@font-face {
+  font-family: "Hedvig Letters Serif";
+  src: url("fonts/hedvig-letters-serif.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+h1, h2, h3, h4,
+.hero__title, .intro__quote, .about__quote, .sessions__title, .course__heading,
+.course-card__title, .course .course-card__title, .faq__title, .contact__title, .fk__title, .fk__card h3 {
+  font-family: "Hedvig Letters Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
