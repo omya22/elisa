@@ -1588,3 +1588,11 @@ html.nav-compact .nav .nav__book, html.nav-compact a.nav__book { display: none !
   .hero__title { font-size: 34px; line-height: 1.12; }
   .hero__lead { margin-top: 12px; font-size: 16px; line-height: 1.35; }
 }
+
+/* Menu button: square box, smaller burger icon */
+.nav__menu-btn, .menu__close { width: 48px !important; height: 48px !important; }
+.burger { width: 18px; height: 7px; }
+.burger span { height: 1.75px; }
+.burger span:last-child { top: 5.25px; }
+.menu.is-open .menu__close .burger span:first-child,
+.menu.is-open .menu__close .burger span:last-child { top: 2.625px; }
