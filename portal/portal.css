@@ -571,3 +571,11 @@ button.resume { border: 0; font: inherit; cursor: pointer; text-align: left; }
 .course__main .lecs > .sec:first-child { margin-top: 0 !important; }
 .ssec { margin-top: 32px; padding-top: 0; }
 .ssec:first-child { margin-top: 0; }
+
+/* Útskrá stays in the header on phones too (course and lecture pages) */
+@media (max-width: 1024px) {
+  .top__back ~ .top__nav .top__out { display: inline-flex; }
+}
+@media (max-width: 480px) {
+  .top--center .top__out { padding: 10px 16px !important; font-size: 14px; }
+}
