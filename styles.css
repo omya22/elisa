@@ -1707,3 +1707,14 @@ h1, h2, h3, h4,
 }
 .nav__links a:not(.nav__login)::before { content: none !important; }
 .nav__links a:not(.nav__login):focus-visible { outline: 2px solid var(--color-olive-800); outline-offset: 2px; }
+
+/* Phones: every button spans the full width */
+@media (max-width: 640px) {
+  .hero__button, .course-card__button, .contact__submit .button, .fk__cta, .price__cta {
+    display: flex !important; width: 100% !important; justify-content: center; justify-self: stretch !important; align-self: stretch;
+  }
+  .hero__content { align-items: stretch; }
+  .contact__submit { justify-content: stretch; }
+  .menu__actions { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px !important; }
+  .menu__book, .menu__login { width: 100% !important; justify-content: center; }
+}
