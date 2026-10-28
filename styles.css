@@ -1745,3 +1745,27 @@ h1, h2, h3, h4,
 
 /* Front-page logo the same size as on the login pages (138px) */
 .nav__logo img { width: 138px; }
+
+/* ==========================================================================
+   Netnámskeið: two options – Grunnur, and Grunnur + 2 viðtöl
+   ========================================================================== */
+.course-card .course-card__meta { margin-bottom: 16px; }
+.plans { container-type: inline-size; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: auto; }
+.plan { display: flex; flex-direction: column; gap: 20px; padding: 24px; background: var(--color-neutral-050, #fffaf5); color: var(--color-olive-800); }
+.plan__name { font-family: "Hedvig Letters Serif", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; }
+.plan__desc { margin-top: 6px; font-size: 16px; line-height: 1.35; }
+.plan__list { list-style: none; margin: 0; padding: 16px 0 0; border-top: 1px solid #e5e1dc; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.35; }
+.plan__list li { display: flex; gap: 10px; }
+.plan__list li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: .5em; border-radius: 50%; background: var(--color-olive-800); }
+.plan__buy { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.plan__price { font-size: 24px; font-weight: 500; letter-spacing: -0.04em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .plans { grid-template-columns: 1fr; }
+  .plan { padding: 20px 16px; }
+  .plan__buy { flex-direction: column; align-items: stretch; }
+  .plan__button { display: flex !important; width: 100% !important; justify-content: center; }
+}
+@media (min-width: 641px) and (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
+.plan__name { margin: 0; }
+.plan__desc { margin: 6px 0 0; }
+.plan__head { min-height: 0; }
