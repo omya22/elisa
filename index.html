@@ -47,6 +47,10 @@
         <li><a href="#spurningar">Spurningar</a></li>
         <li><a href="#hafa-samband">Hafa samband</a></li>
       </ul>
+      <div class="menu__info">
+        <div><span>Hafa samband</span><a href="mailto:elisa@elisavidars.is">elisa@elisavidars.is</a><a href="tel:+3540000000">+354 000 0000</a></div>
+        <div><span>Samfélagsmiðlar</span><a href="#">Instagram</a><a href="#">Facebook</a></div>
+      </div>
     </nav>
     <div class="menu__actions">
       <a class="menu__book" href="#einkatimar">Bóka tíma</a>
@@ -148,12 +152,6 @@
           <span class="price__desc">Fimm tímar á 8–10 vikum. Við aðlögum planið jafnóðum svo breytingarnar endist.</span>
           <span class="price__amount">79.990 kr</span>
           <a class="price__cta" href="mailto:elisa@elisavidars.is?subject=5%20t%C3%ADmar" aria-label="Bóka – 5 tímar">Bóka<svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5.76 15.04h20.35v1.92H5.76z"/><path fill="currentColor" fill-rule="evenodd" d="M16.82 23.71 24.56 16l-7.74-7.71 1.35-1.36L27.28 16l-9.11 9.07z"/></svg></a>
-        </li>
-        <li class="price">
-          <span class="price__name">3 mánaða prógramm</span>
-          <span class="price__desc">12 vikur með vikulegu aðhaldi, beinni línu til mín og lokamati í lokin.</span>
-          <span class="price__amount">149.000 kr</span>
-          <a class="price__cta" href="mailto:elisa@elisavidars.is?subject=3%20m%C3%A1na%C3%B0a%20pr%C3%B3gramm" aria-label="Bóka – 3 mánaða prógramm">Bóka<svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5.76 15.04h20.35v1.92H5.76z"/><path fill="currentColor" fill-rule="evenodd" d="M16.82 23.71 24.56 16l-7.74-7.71 1.35-1.36L27.28 16l-9.11 9.07z"/></svg></a>
         </li>
       </ul>
     </section>
@@ -396,59 +394,6 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
   })();
   </script>
   <script>
-  // Line-by-line reveal: a box in the heading colour wipes across each line, then pulls away to show the text
-  (() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const heads = [...document.querySelectorAll('.intro__quote, .sessions__title, .faq__title, .contact__title')];
-    const split = h => {
-      const text = h.dataset.text || (h.dataset.text = h.textContent.trim().replace(/\s+/g, ' '));
-      h.setAttribute('aria-label', text);
-      h.innerHTML = text.split(' ').map(w => `<span class="rv-word">${w}</span>`).join(' ');
-      const lines = [];
-      let top = null;
-      h.querySelectorAll('.rv-word').forEach(w => {
-        if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; }
-        lines[lines.length - 1].push(w.textContent);
-      });
-      h.innerHTML = lines.map((l, i) =>
-        `<span class="rv-line" style="--i:${i}" aria-hidden="true"><span class="rv-text">${l.join(' ')}</span></span>`).join('');
-    };
-    heads.forEach(h => { h.classList.add('rv'); split(h); });
-    // Line breaks are measured with whatever font is loaded at that moment. When Silka (or the
-    // fallback) finishes loading the words get wider, so measure again or a word ends up alone on a line.
-    const resplit = () => heads.forEach(split);
-    if (document.fonts) {
-      document.fonts.ready.then(resplit);
-      document.fonts.addEventListener('loadingdone', resplit);
-    }
-    addEventListener('load', resplit);
-    // Also re-measure if a heading's width changes for any other reason
-    if ('ResizeObserver' in window) {
-      const widths = new WeakMap();
-      const ro = new ResizeObserver(es => es.forEach(e => {
-        const w = Math.round(e.contentRect.width);
-        if (widths.has(e.target) && widths.get(e.target) !== w) split(e.target);
-        widths.set(e.target, w);
-      }));
-      heads.forEach(h => ro.observe(h));
-    }
-    // Plays once, on its own timing, when the heading scrolls into view
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) return;
-      const h = e.target; io.unobserve(h);
-      h.classList.add('is-in');
-      const n = h.querySelectorAll('.rv-line').length;
-      setTimeout(() => { h._done = true; h.classList.add('is-done'); }, 1100 + (n - 1) * 150 + 50);
-    }), { rootMargin: '0px 0px -15% 0px' });
-    heads.forEach(h => io.observe(h));
-    let w = innerWidth, t;
-    addEventListener('resize', () => {
-      if (innerWidth === w) return; w = innerWidth;
-      clearTimeout(t); t = setTimeout(() => heads.forEach(split), 150);
-    });
-  })();
-  </script>
-  <script>
   // Mobile + tablet menu – green full screen, grows out of the burger button; closes on link, Loka, or Escape
   (() => {
     const btn = document.querySelector('.nav__menu-btn'), menu = document.getElementById('site-menu');
@@ -487,6 +432,45 @@ document.getElementById('k-prev').onclick=()=>{i=(i+2)%3;show()};
       r.addEventListener('keydown', e => { if (e.key === ' ' && r.checked) { e.preventDefault(); r.checked = false; was = false; } });
       r.addEventListener('click', () => { if (was) { r.checked = false; was = false; } });
     });
+  })();
+  </script>
+  <script>
+  // Parallax: the hero photo drifts slower than the page, and the other photos shift gently inside their frames
+  (() => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hero = document.querySelector('.hero'), heroImg = hero && hero.querySelector('.hero__image'), heroText = hero && hero.querySelector('.hero__content');
+    // Photos that sit directly in the layout get a clipping frame; the frame takes over the photo's class so the layout is unchanged
+    ['.intro__image', '.about__image'].forEach(sel => {
+      const img = document.querySelector(sel); if (!img) return;
+      const f = document.createElement('span');
+      f.className = img.className + ' px-frame';
+      img.className = 'px-img';
+      img.replaceWith(f); f.appendChild(img);
+    });
+    document.documentElement.classList.add('has-parallax');
+    const imgs = [...document.querySelectorAll('.px-img, .sessions__melon img, .sessions__photo img, .course .video img')];
+    imgs.forEach(i => i.classList.add('px-img'));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const vh = innerHeight, y = scrollY;
+      if (hero) {
+        const h = hero.offsetHeight;
+        if (y < h + 200) {
+          heroImg.style.translate = `0 ${(y * 0.3).toFixed(1)}px`;
+          if (heroText) { heroText.style.translate = `0 ${(y * 0.12).toFixed(1)}px`; heroText.style.opacity = Math.max(0, 1 - y / (h * 0.7)).toFixed(3); }
+        }
+      }
+      imgs.forEach(i => {
+        const r = i.parentElement.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        const d = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2); // 1 entering at the bottom, -1 leaving at the top
+        i.style.translate = `0 ${(Math.max(-1, Math.min(1, d)) * r.height * -0.05).toFixed(1)}px`;
+      });
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
   })();
   </script>
 </body>

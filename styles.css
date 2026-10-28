@@ -1621,3 +1621,73 @@ h1, h2, h3, h4,
   font-weight: 400;
   letter-spacing: -0.01em;
 }
+
+/* ==========================================================================
+   Einkatímar list: layout follows the list's own width (not the screen), so
+   the name, text, price and button never run into each other.
+   ========================================================================== */
+.sessions__list { container-type: inline-size; container-name: prices; }
+.price {
+  grid-template-columns: 210px minmax(0, 1fr) 120px max-content;
+  grid-template-areas: "name desc amount cta";
+  column-gap: 32px; row-gap: 6px; align-items: center;
+}
+.price__name { grid-area: name; padding-right: 0; }
+.price__desc { grid-area: desc; }
+.price__amount { grid-area: amount; justify-self: end; }
+.price__cta { grid-area: cta; margin-top: 0; }
+/* Medium: name, price and button on one line, text underneath the name */
+@container prices (max-width: 820px) {
+  .price { grid-template-columns: minmax(0, 1fr) max-content max-content; grid-template-areas: "name amount cta" "desc desc cta"; column-gap: 24px; }
+  .price__desc { max-width: 46ch; }
+  .price__cta { align-self: center; }
+}
+/* Narrow: stack everything */
+@container prices (max-width: 460px) {
+  .price { grid-template-columns: minmax(0, 1fr) max-content; grid-template-areas: "name amount" "desc desc" "cta cta"; row-gap: 8px; column-gap: 16px; }
+  .price__desc { max-width: none; }
+  .price__cta { margin-top: 8px; }
+}
+
+/* Nav links: plain hover – a thin underline fades in, no highlighter bar */
+.nav__links a:not(.nav__login)::before { content: none; }
+.nav__links a:not(.nav__login) {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px;
+  text-decoration-color: transparent; transition: text-decoration-color .2s ease;
+}
+.nav__links a:not(.nav__login):hover, .nav__links a:not(.nav__login):focus-visible { text-decoration-color: currentColor; background: transparent; }
+
+/* Portrait tablets (e.g. iPad upright): the wall beside Elísa is out of frame, so the text would sit on her face.
+   Use the phone layout instead – text at the bottom on a light cream fade. */
+@media (min-width: 861px) and (max-aspect-ratio: 1/1) {
+  .hero__content { left: 24px; right: 24px; width: auto; top: auto; bottom: 48px; color: var(--color-olive-800); }
+  .hero__content::before {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    inset: -320px -24px -48px;
+    background: linear-gradient(to top, rgb(255 250 245 / .96) 0%, rgb(255 250 245 / .88) 45%, rgb(255 250 245 / .55) 75%, rgb(255 250 245 / 0) 100%);
+  }
+  .hero__title { font-size: 48px; line-height: 1.1; }
+  .hero__lead { max-width: 520px; font-size: 17px; line-height: 1.35; }
+}
+
+/* Mobile menu: contact + socials sit under the links, above the buttons */
+.menu__info { margin-top: auto; padding-top: 40px; border-top: 0; }
+.menu__info span { font-size: 13px; letter-spacing: 0; }
+.menu__info a { font-size: 16px; line-height: 1.6; letter-spacing: -0.02em; }
+.menu__links li, .menu__info, .menu__actions > * { }
+.menu.is-open .menu__info { opacity: 1; transform: none; }
+.menu__info { opacity: 0; transform: translateY(12px); transition: opacity .4s ease .4s, transform .4s ease .4s; }
+@media (prefers-reduced-motion: reduce) { .menu__info { opacity: 1; transform: none; transition: none; } }
+@media (min-width: 641px) { .menu__info { grid-template-columns: repeat(2, 240px); } }
+
+/* Contact gets a sand panel so FAQ and Contact aren't two white sections back to back */
+.contact { background: var(--color-sand, #eeebe2); padding: 72px 24px 88px; margin-top: clamp(64px, 7vw, 104px); margin-bottom: var(--margin); }
+.contact .field__line { border-bottom-color: #d3cdbd; }
+@media (max-width: 1024px) { .contact { padding: 56px 16px 64px; } }
+
+/* Parallax frames (set up by JS only when motion is allowed) */
+.px-frame { display: block; overflow: hidden; }
+.px-frame > .px-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: inherit; }
+.has-parallax .px-img { scale: 1.12; will-change: translate; }
+.sessions__melon, .sessions__photo { overflow: hidden; }
+.hero__image, .hero__content { will-change: translate; }
