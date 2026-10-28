@@ -1718,3 +1718,6 @@ h1, h2, h3, h4,
   .menu__actions { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px !important; }
   .menu__book, .menu__login { width: 100% !important; justify-content: center; }
 }
+
+/* 16px between the contact panel and the footer */
+.contact { margin-bottom: 16px; }
