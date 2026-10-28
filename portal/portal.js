@@ -235,7 +235,7 @@
       body = `<span class="muted small mt-auto">${c.lectures.length} fyrirlestrar · ${total(st.duration)}</span>`;
       cta = `<span class="btn btn--light">Byrja námskeiðið</span>`;
     }
-    return `<a class="card" href="#/n/${c.id}">${cover}<div class="card__body"><div class="row-wrap">${label}${c.archived ? '<span class="tag">Ekki lengur til sölu</span>' : ''}</div><h2 class="card__title">${esc(c.name)}</h2>${body}${cta}</div></a>`;
+    return `<a class="card" href="#/n/${c.id}">${cover}<div class="card__body">${c.archived ? '<div class="row-wrap"><span class="tag">Ekki lengur til sölu</span></div>' : ''}<h2 class="card__title">${esc(c.name)}</h2>${body}${cta}</div></a>`;
   }
   function vCourses() {
     const order = c => { const s = stats(c); return s.completed ? 2 : s.started ? 0 : 1; };
