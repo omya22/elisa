@@ -524,3 +524,6 @@ body.is-auth #app { max-width: none; }
 
 /* Phones: buttons on the login pages span the full width, same as the landing page */
 @media (max-width: 640px) { .auth__form .btn { width: 100%; justify-content: center; align-self: stretch; } }
+
+/* Login headings stay on one line (form column a bit wider to fit them) */
+@media (min-width: 641px) { .auth__form { max-width: 540px; } .auth__form h1 { white-space: nowrap; } }
