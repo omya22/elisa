@@ -527,3 +527,31 @@ body.is-auth #app { max-width: none; }
 
 /* Login headings stay on one line (form column a bit wider to fit them) */
 @media (min-width: 641px) { .auth__form { max-width: 540px; } .auth__form h1 { white-space: nowrap; } }
+
+/* ==========================================================================
+   Námskeiðin mín feedback 28.10
+   ========================================================================== */
+/* Header content lines up with the page content (logo on the same edge as the title and cards) */
+.top__logo { padding-left: 0; }
+.top--center .top__back { padding-left: 0; }
+/* Phone/tablet: header gets 16px inside on both sides so Útskrá doesn't touch the edge or the line */
+@media (max-width: 1024px) {
+  .top { height: auto; min-height: 64px; padding: 8px var(--gutter); box-sizing: border-box; }
+  .top__out { padding: 12px 20px !important; }
+  .top--center .top__logo { padding: 0 8px; }
+}
+/* Simple footer on the pages after login */
+.foot {
+  margin-top: 96px; padding: 24px 0 32px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap;
+  font-size: 14px; color: var(--muted);
+}
+.foot__logo img { display: block; width: 110px; height: auto; }
+.foot__links { display: flex; gap: 8px 24px; flex-wrap: wrap; }
+.foot__links a { color: var(--olive); font-weight: 500; text-decoration: none; }
+.foot__links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 640px) {
+  .foot { margin-top: 64px; flex-direction: column; align-items: flex-start; }
+  .foot__links { flex-direction: column; }
+}
+.foot { margin-left: var(--gutter); margin-right: var(--gutter); }

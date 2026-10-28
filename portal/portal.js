@@ -446,6 +446,17 @@
   }
 
   /* ---------- router ---------- */
+  /* ---------- simple footer for the pages after login ---------- */
+  const footer = () => `
+    <footer class="foot">
+      <a class="foot__logo" href="../" aria-label="Elísa Viðars – forsíða"><img src="${LOGO}" alt="" width="110" height="19"></a>
+      <nav class="foot__links" aria-label="Fótur">
+        <a href="../">Til baka á vefinn</a>
+        <a href="mailto:elisa@elisavidars.is">elisa@elisavidars.is</a>
+      </nav>
+      <span class="foot__legal">© ${new Date().getFullYear()} Elísa Viðars</span>
+    </footer>`;
+
   function render() {
     if (player) { player.stop(); player = null; }
     const h = location.hash.replace(/^#\/?/, ''), parts = h.split('/');
@@ -464,6 +475,7 @@
       else { view = vCourses(); }
     }
     if (!view) return;
+    if (authed) view += footer();
     app.innerHTML = view;
     app.querySelectorAll('[data-logout]').forEach(b => b.addEventListener('click', () => { S.email = null; S.pending = null; save(); go('#/innskra'); }));
     app.querySelectorAll('[data-file]').forEach(b => b.addEventListener('click', () => toast(`${b.dataset.file} – prufugögn, ekkert að sækja`)));
