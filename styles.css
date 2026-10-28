@@ -1742,3 +1742,6 @@ h1, h2, h3, h4,
   .faq { padding: 64px 16px; }
   .contact { padding: 0 16px; }
 }
+
+/* Front-page logo the same size as on the login pages (138px) */
+.nav__logo img { width: 138px; }
