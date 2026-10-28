@@ -1721,3 +1721,24 @@ h1, h2, h3, h4,
 
 /* 16px between the contact panel and the footer */
 .contact { margin-bottom: 16px; }
+
+/* ==========================================================================
+   Comment 28.10: same gap between every section; the sand panel moves from
+   Hafa samband to Algengar spurningar.
+   ========================================================================== */
+.course  { margin-bottom: 0; }
+.faq {
+  margin: var(--section-space) var(--margin) 0;
+  padding: clamp(64px, 6.7vw, 96px) 24px;
+  background: #eeebe2;
+}
+.contact {
+  background: transparent;
+  margin: var(--section-space) var(--margin) 0;
+  padding: 0;
+}
+.fk { margin-top: var(--section-space); }
+@media (max-width: 1024px) {
+  .faq { padding: 64px 16px; }
+  .contact { padding: 0 16px; }
+}
