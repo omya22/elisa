@@ -561,3 +561,13 @@ body.is-auth #app { max-width: none; }
   .top { border-bottom: 0; }
   .top:has(+ .hero) { margin-bottom: 0; }
 }
+
+/* Course not started: "Byrja námskeiðið" sits in the hero where "Halda áfram" goes (no separate banner) */
+button.resume { border: 0; font: inherit; cursor: pointer; text-align: left; }
+
+/* Chapters: separated by space, not a dark line */
+.course__main .sec, .ssec { border-top: 0 !important; }
+.course__main .sec { margin-top: 40px !important; padding-top: 0 !important; padding-bottom: 12px !important; }
+.course__main .lecs > .sec:first-child { margin-top: 0 !important; }
+.ssec { margin-top: 32px; padding-top: 0; }
+.ssec:first-child { margin-top: 0; }
