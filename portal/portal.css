@@ -555,3 +555,9 @@ body.is-auth #app { max-width: none; }
   .foot__links { flex-direction: column; }
 }
 .foot { margin-left: var(--gutter); margin-right: var(--gutter); }
+
+/* Phone/tablet: no line under the header, and the hero photo sits right under it (no gap) */
+@media (max-width: 1024px) {
+  .top { border-bottom: 0; }
+  .top:has(+ .hero) { margin-bottom: 0; }
+}
