@@ -1700,3 +1700,10 @@ h1, h2, h3, h4,
 /* No gap between the contact panel and the footer */
 .contact { margin-bottom: 0; }
 .fk { margin-top: 0; }
+
+/* Nav links: no hover effect at all */
+.nav__links a:not(.nav__login), .nav__links a:not(.nav__login):hover, .nav__links a:not(.nav__login):focus-visible {
+  background: transparent !important; color: var(--color-olive-800); text-decoration: none; transition: none;
+}
+.nav__links a:not(.nav__login)::before { content: none !important; }
+.nav__links a:not(.nav__login):focus-visible { outline: 2px solid var(--color-olive-800); outline-offset: 2px; }
