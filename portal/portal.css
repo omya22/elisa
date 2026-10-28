@@ -518,3 +518,9 @@ h1, h2, .card__title {
   font-weight: 400 !important;
   letter-spacing: -0.01em;
 }
+
+/* Login pages follow the landing page: full width with the same 16px frame, no 1440px cap (that's only for the course pages) */
+body.is-auth #app { max-width: none; }
+
+/* Phones: buttons on the login pages span the full width, same as the landing page */
+@media (max-width: 640px) { .auth__form .btn { width: 100%; justify-content: center; align-self: stretch; } }

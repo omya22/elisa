@@ -139,7 +139,6 @@
         <a class="auth__top auth__top--left" href="#/innskra">← Til baka</a>
         <form class="auth__form" id="f-code" novalidate>
           <div class="stack-12" id="code-head">
-            <span class="badge-ic">${I.mail}</span>
             <h1 tabindex="-1">Athugaðu póstinn</h1>
             <p class="lead">Við sendum 6 stafa kóða á <strong>${esc(p.email)}</strong>. Hann gildir í 10 mínútur.</p>
             <a class="small strong" href="#/innskra">Breyta netfangi</a>
@@ -207,7 +206,6 @@
         <a class="auth__top auth__top--left" href="#/innskra">← Til baka</a>
         <div class="auth__form">
           <div class="stack-12">
-            <span class="badge-ic badge-ic--sand">${I.clock}</span>
             <h1 tabindex="-1">Kóðinn er útrunninn</h1>
             <p class="lead">Kóðar gilda í 10 mínútur. Við sendum nýjan á <strong>${esc(S.pending?.email || '')}</strong>.</p>
           </div>
