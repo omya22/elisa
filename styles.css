@@ -1821,3 +1821,9 @@ h1, h2, h3, h4,
 
 /* Byline under the Um mig quote */
 .about__by { margin-top: 16px; font-family: "Silka", system-ui, sans-serif; font-size: 17px; font-weight: 500; line-height: 1.4; letter-spacing: -0.02em; font-style: normal; }
+
+/* Um mig: paragraphs sit together (12px apart), a bit more space before the facts table */
+.about__text { gap: 12px; line-height: 1.45; }
+.about__text > p + p { margin-top: 0; }
+.about__text > p { margin: 0; max-width: 58ch; }
+.about__text > .about__facts { margin-top: 20px; }
