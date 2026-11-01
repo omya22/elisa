@@ -1818,3 +1818,6 @@ h1, h2, h3, h4,
 .pkg__kind strong { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
 .pkg__buy { margin-top: 0; padding-top: 0; }
 @media (max-width: 1000px) { .course__top { grid-template-columns: 1fr; } }
+
+/* Byline under the Um mig quote */
+.about__by { margin-top: 16px; font-family: "Silka", system-ui, sans-serif; font-size: 17px; font-weight: 500; line-height: 1.4; letter-spacing: -0.02em; font-style: normal; }
