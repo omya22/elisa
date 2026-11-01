@@ -100,7 +100,7 @@
     <div class="auth">
       <div class="auth__photo"><a class="auth__logo" href="../"><img src="${LOGO}" alt="Elísa Viðars – forsíða" width="138" height="24"></a></div>
       <main class="auth__side">
-        <a class="auth__top" href="../">Til baka á vefinn ${I.out}</a>
+        <a class="auth__top" href="../">Til baka á vefinn</a>
         <form class="auth__form" id="f-email" novalidate>
           <div class="stack-12">
             <h1 tabindex="-1">Velkomin aftur</h1>
@@ -111,7 +111,7 @@
             <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nafn@dæmi.is" value="${esc(S.pending?.email || '')}" required>
             <p class="field__err" id="email-err" hidden></p>
           </div>
-          <button class="btn btn--dark" type="submit">Senda kóða ${I.arrow}</button>
+          <button class="btn btn--dark" type="submit">Senda kóða</button>
         </form>
       </main>
     </div>`;

@@ -1827,3 +1827,33 @@ h1, h2, h3, h4,
 .about__text > p + p { margin-top: 0; }
 .about__text > p { margin: 0; max-width: 58ch; }
 .about__text > .about__facts { margin-top: 20px; }
+
+/* ==========================================================================
+   Athugasemdir 1. nóv
+   ========================================================================== */
+/* Námskeið: "4 vikna netnámskeið" is part of the heading; intro text bottom-aligned with the video */
+.course__heading-sub { display: block; color: #8a9168; }
+.course__top { align-items: end; }
+
+/* Sand background moves back from Algengar spurningar to Hafa samband */
+.faq { background: transparent; padding-left: 0; padding-right: 0; }
+.contact { background: #eeebe2; padding: clamp(64px, 6.7vw, 96px) 24px; }
+@media (max-width: 1024px) {
+  .faq { padding: 0 16px; }
+  .contact { padding: 64px 16px; }
+}
+
+/* Hero: switch to the phone layout (text at the bottom on a light fade) on any screen up to 1280px,
+   so the text never sits on Elísa's face */
+@media (min-width: 861px) and (max-width: 1280px) {
+  .hero__content { left: 24px; right: 24px; width: auto; top: auto; bottom: 48px; color: var(--color-olive-800); }
+  .hero__content::before {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    inset: -320px -24px -48px;
+    background: linear-gradient(to top, rgb(255 250 245 / .96) 0%, rgb(255 250 245 / .88) 45%, rgb(255 250 245 / .55) 75%, rgb(255 250 245 / 0) 100%);
+  }
+  .hero__title { font-size: 48px; line-height: 1.1; }
+  .hero__lead { max-width: 560px; font-size: 17px; line-height: 1.35; }
+}
+.faq { padding-top: 0; padding-bottom: 0; }
+@media (max-width: 1024px) { .faq { padding-top: 0; padding-bottom: 0; } }
