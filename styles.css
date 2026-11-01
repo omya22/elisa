@@ -1772,3 +1772,49 @@ h1, h2, h3, h4,
   .pkg__buy { flex-direction: column; align-items: stretch; }
   .pkg__button { display: flex !important; width: 100% !important; justify-content: center; }
 }
+
+/* ==========================================================================
+   Texti frá Elísu (1. nóv): hero takkar, intro, einkatímar, námskeið
+   ========================================================================== */
+/* Hero: two buttons side by side */
+.hero__buttons { margin-top: 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+.hero__buttons .hero__button { margin-top: 0; }
+.hero__button--light { background: var(--color-olive-300, #c1c07d) !important; color: var(--color-olive-800) !important; }
+.hero__button--light:hover { background: #b3b26c !important; }
+@media (max-width: 640px) { .hero__buttons { flex-direction: column; } }
+
+/* Intro: heading + short text about Elísa next to the photo */
+.intro__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; max-width: 640px; }
+.intro__text p { margin: 0; font-size: 17px; line-height: 1.45; color: var(--color-olive-800); max-width: 52ch; }
+.intro__text .intro__by { font-weight: 500; }
+.intro__text .intro__quote { margin-bottom: 8px; }
+
+/* Einkatímar: heading + two short paragraphs in the title spot */
+.sessions__intro { grid-area: title; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.sessions__intro p { margin: 0; font-size: 17px; line-height: 1.45; max-width: 52ch; }
+
+/* About: three short paragraphs */
+.about__text > p + p { margin-top: 12px; }
+
+/* Námskeið: intro + video on top, "Tvær leiðir" boxes underneath */
+.course__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; align-items: start; }
+.course .course__intro { display: flex; flex-direction: column; gap: 16px; }
+.course__intro p { margin: 0; font-size: 17px; line-height: 1.45; max-width: 48ch; }
+.course__sub { font-size: 14px !important; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; margin-top: -4px !important; }
+.course__video { aspect-ratio: 16 / 10 !important; }
+.pkgs__title { margin: 24px 0 0; font-family: "Hedvig Letters Serif", Georgia, serif; font-weight: 400; font-size: 32px; letter-spacing: -0.01em; }
+.pkg { padding: 24px; gap: 16px; }
+.pkg--premium { outline: 2px solid var(--color-olive-800); outline-offset: -2px; }
+.pkg__eyebrow { margin: 0; font-size: 13px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #6b7550; }
+.pkg__title { margin: -8px 0 0; font-family: "Hedvig Letters Serif", Georgia, serif; font-weight: 400; font-size: clamp(30px, 2.6vw, 40px); line-height: 1.1; letter-spacing: -0.01em; }
+.pkg__desc { margin: 0; font-size: 16px; line-height: 1.45; max-width: 46ch; color: #6b7550; }
+.pkg__list { border-top: 1px solid #e5e1dc; padding-top: 16px; gap: 12px; }
+.pkg__list li { align-items: flex-start; gap: 12px; line-height: 1.4; }
+.pkg__list li::before { content: none !important; }
+.pkg__check { flex: none; margin-top: 2px; color: var(--color-olive-800); }
+.pkg__foot { margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+.pkg__kind { display: flex; flex-direction: column; gap: 2px; padding: 16px 0 0; border-top: 1px solid #e5e1dc; }
+.pkg__kind span { font-size: 14px; color: #6b7550; }
+.pkg__kind strong { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.pkg__buy { margin-top: 0; padding-top: 0; }
+@media (max-width: 1000px) { .course__top { grid-template-columns: 1fr; } }
