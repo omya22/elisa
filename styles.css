@@ -1857,3 +1857,6 @@ h1, h2, h3, h4,
 }
 .faq { padding-top: 0; padding-bottom: 0; }
 @media (max-width: 1024px) { .faq { padding-top: 0; padding-bottom: 0; } }
+
+/* Námskeið: intro text aligned to the top of the video */
+.course__top { align-items: start; }
